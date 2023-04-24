@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class Screen extends JFrame {
@@ -19,43 +18,56 @@ public class Screen extends JFrame {
     private JLabel jlGetProduct;
     private JLabel jlStockInfo;
     private JLabel jlOrderInfo;
+    private JLabel jlOrderNumber;
+
+    private JTextField jtOrderNumber;
+
+    private String[] recentOrders = {};
+    private JComboBox jcRecentOrders = new JComboBox(recentOrders);
+
+    private String[] stock = {"test", "test", "test", "test", "test"};
+    private JList jliStock = new JList(stock);
 
 
     public Screen() {
-        setTitle("-");
+        setTitle("HMI");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Create panels
-        JPanel panel1 = new JPanel(); //Voorraad + Product ophalen
-        panel1.setLayout(new GridLayout(1, 2));
-
-        JPanel panel2 = new JPanel(); //Rechterkant
-        panel2.setLayout(new GridLayout(3, 1));
-
-        JPanel panel3 = new JPanel(); //Visuele kast + rechterkant
-        panel3.setLayout(new GridLayout(1, 2));
-
-        JPanel panel4 = new JPanel(); //Bestelling toevoegen
-        panel4.setLayout(new GridLayout(1, 4));
-
-        JPanel panel5 = new JPanel(); //Alles
-        panel5.setLayout(new BorderLayout());
-
-        JPanel panel6 = new JPanel(); //Product ophalen
-        panel6.setLayout(new GridLayout(3, 1));
-
-        JPanel panel7 = new JPanel(); //Refresh + ophalen
-        panel7.setLayout(new GridLayout(1,2));
-
-        JPanel panel8 = new JPanel(); //Ordernummer + tekstvak
-        panel8.setLayout(new GridLayout(1,2));
-
         //Create borders
         Border blackline = BorderFactory.createLineBorder(Color.black);
-        Border empty = BorderFactory.createEmptyBorder(5, 5, 5, 5);
-        Border border = BorderFactory.createCompoundBorder(blackline, empty);
-        Border border1 = BorderFactory.createCompoundBorder(empty, border);
+        Border padding = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+        Border border = BorderFactory.createCompoundBorder(blackline, padding);
+        Border border1 = BorderFactory.createCompoundBorder(padding, border);
+
+        //Create panels
+        JPanel StockAndGetProduct = new JPanel(); //Voorraad + Product ophalen
+        StockAndGetProduct.setLayout(new GridLayout(1, 2));
+
+        JPanel RightSide = new JPanel(); //Rechterkant
+        RightSide.setLayout(new GridLayout(3, 1));
+
+        JPanel VisualAndRightSide = new JPanel(); //Visuele kast + rechterkant
+        VisualAndRightSide.setLayout(new GridLayout(1, 2));
+
+        JPanel AddOrder = new JPanel(); //Bestelling toevoegen
+        AddOrder.setLayout(new GridLayout(1, 4));
+
+        JPanel FullScreen = new JPanel(); //Alles
+        FullScreen.setLayout(new BorderLayout());
+
+        JPanel GetProduct = new JPanel(); //Product ophalen
+        GetProduct.setLayout(new GridLayout(3, 1));
+        GetProduct.setBorder(BorderFactory.createTitledBorder(border1, "Product Ophalen"));
+
+        JPanel RefreshAndGetProduct = new JPanel(); //Refresh + ophalen
+        RefreshAndGetProduct.setLayout(new GridLayout(1,1));
+
+        JPanel OrderNumberAndText = new JPanel(); //Ordernummer + tekstvak
+        OrderNumberAndText.setLayout(new GridLayout(1,2));
+
+        JPanel Stock = new JPanel();
+        Stock.setBorder(BorderFactory.createTitledBorder(border1, "Voorraad"));
 
         //Create buttons
         jbAddOrder = new JButton("Bestelling toevoegen");
@@ -75,42 +87,65 @@ public class Screen extends JFrame {
         jlEmpty2 = new JLabel();
         jlEmpty3 = new JLabel();
 
-        jlVisual = new JLabel("Visuele kast");
+        jlVisual = new JLabel();
         jlVisual.setVerticalAlignment(JLabel.TOP);
-        jlVisual.setBorder(border1);
+        jlVisual.setBorder(BorderFactory.createTitledBorder(border1, "Visuele kast"));
 
-        jlStock = new JLabel("Voorraad");
+        jlStock = new JLabel();
         jlStock.setVerticalAlignment(JLabel.TOP);
-        jlStock.setBorder(border1);
 
-        jlGetProduct = new JLabel("Product ophalen");
+        jlGetProduct = new JLabel();
         jlGetProduct.setVerticalAlignment(JLabel.TOP);
-        jlGetProduct.setBorder(border1);
 
-        jlOrderInfo = new JLabel("Order info");
+        jlOrderInfo = new JLabel();
         jlOrderInfo.setVerticalAlignment(JLabel.TOP);
-        jlOrderInfo.setBorder(border1);
+        jlOrderInfo.setBorder(BorderFactory.createTitledBorder(border1, "Order info"));
 
-        jlStockInfo = new JLabel("Pakbon");
+        jlStockInfo = new JLabel();
         jlStockInfo.setVerticalAlignment(JLabel.TOP);
-        jlStockInfo.setBorder(border1);
+        jlStockInfo.setBorder(BorderFactory.createTitledBorder(border1, "Pakbon"));
+
+        jlOrderNumber = new JLabel("Ordernummer:");
+        jlOrderInfo.setHorizontalAlignment(JLabel.LEFT);
+
+        //Create textfields
+
+        jtOrderNumber = new JTextField();
 
 
         //Specifieke volgorde voor het toevoegen
-        panel4.add(jbAddOrder);
-        panel4.add(jlEmpty);
-        panel4.add(jlEmpty2);
-        panel4.add(jlEmpty3);
-        panel5.add(panel4, BorderLayout.PAGE_START);
-        panel3.add(jlVisual);
-        panel1.add(jlStock);
-        panel1.add(jlGetProduct);
-        panel2.add(panel1);
-        panel2.add(jlOrderInfo);
-        panel2.add(jlStockInfo);
-        panel3.add(panel2);
-        panel5.add(panel3, BorderLayout.CENTER);
-        add(panel5);
+        AddOrder.add(jbAddOrder);
+        AddOrder.add(jlEmpty);
+        AddOrder.add(jlEmpty2);
+        AddOrder.add(jlEmpty3);
+        FullScreen.add(AddOrder, BorderLayout.PAGE_START);
+
+        VisualAndRightSide.add(jlVisual);
+
+        Stock.add(jliStock);
+        StockAndGetProduct.add(Stock);
+
+        OrderNumberAndText.add(jlOrderNumber);
+        OrderNumberAndText.add(jtOrderNumber);
+
+        GetProduct.add(OrderNumberAndText);
+
+        GetProduct.add(jcRecentOrders);
+
+        RefreshAndGetProduct.add(jbRefresh);
+        RefreshAndGetProduct.add(jbGetProduct);
+        GetProduct.add(RefreshAndGetProduct);
+        StockAndGetProduct.add(GetProduct);
+
+        RightSide.add(StockAndGetProduct);
+        RightSide.add(jlOrderInfo);
+        RightSide.add(jlStockInfo);
+
+        VisualAndRightSide.add(RightSide);
+
+        FullScreen.add(VisualAndRightSide, BorderLayout.CENTER);
+
+        add(FullScreen);
 
         setVisible(true);
     }
