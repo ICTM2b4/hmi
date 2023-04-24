@@ -5,6 +5,11 @@ import java.awt.*;
 
 public class Screen extends JFrame {
     private JButton jbAddOrder;
+    private JButton jbRefresh;
+    private JButton jbGetProduct;
+    private JButton jbChangeProduct;
+    private JButton jbGetOrder;
+    private JButton jbPrintOrder;
 
     private JLabel jlEmpty;
     private JLabel jlEmpty2;
@@ -22,27 +27,50 @@ public class Screen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create panels
-        JPanel panel1 = new JPanel();
+        JPanel panel1 = new JPanel(); //Voorraad + Product ophalen
         panel1.setLayout(new GridLayout(1, 2));
-        JPanel panel2 = new JPanel();
+
+        JPanel panel2 = new JPanel(); //Rechterkant
         panel2.setLayout(new GridLayout(3, 1));
-        JPanel panel3 = new JPanel();
+
+        JPanel panel3 = new JPanel(); //Visuele kast + rechterkant
         panel3.setLayout(new GridLayout(1, 2));
-        JPanel panel4 = new JPanel();
+
+        JPanel panel4 = new JPanel(); //Bestelling toevoegen
         panel4.setLayout(new GridLayout(1, 4));
-        JPanel panel5 = new JPanel();
+
+        JPanel panel5 = new JPanel(); //Alles
         panel5.setLayout(new BorderLayout());
+
+        JPanel panel6 = new JPanel(); //Product ophalen
+        panel6.setLayout(new GridLayout(3, 1));
+
+        JPanel panel7 = new JPanel(); //Refresh + ophalen
+        panel7.setLayout(new GridLayout(1,2));
+
+        JPanel panel8 = new JPanel(); //Ordernummer + tekstvak
+        panel8.setLayout(new GridLayout(1,2));
 
         //Create borders
         Border blackline = BorderFactory.createLineBorder(Color.black);
-        Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        Border border = BorderFactory.createCompoundBorder(blackline, padding);
+        Border empty = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+        Border border = BorderFactory.createCompoundBorder(blackline, empty);
         Border border1 = BorderFactory.createCompoundBorder(empty, border);
 
-        //Create labels
+        //Create buttons
         jbAddOrder = new JButton("Bestelling toevoegen");
 
+        jbRefresh = new JButton("Refresh");
+
+        jbGetProduct = new JButton("Ophalen");
+
+        jbChangeProduct = new JButton("Wijzigen");
+
+        jbGetOrder = new JButton("Verwerken");
+
+        jbPrintOrder = new JButton("Print");
+
+        //Create labels
         jlEmpty = new JLabel();
         jlEmpty2 = new JLabel();
         jlEmpty3 = new JLabel();
@@ -58,7 +86,6 @@ public class Screen extends JFrame {
         jlGetProduct = new JLabel("Product ophalen");
         jlGetProduct.setVerticalAlignment(JLabel.TOP);
         jlGetProduct.setBorder(border1);
-
 
         jlOrderInfo = new JLabel("Order info");
         jlOrderInfo.setVerticalAlignment(JLabel.TOP);
