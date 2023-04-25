@@ -32,6 +32,7 @@ public class Screen extends JFrame {
     public Screen() {
         setTitle("HMI");
         setSize(1000, 500);
+        setMinimumSize(new Dimension(1000, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create borders
@@ -67,7 +68,12 @@ public class Screen extends JFrame {
         OrderNumberAndText.setLayout(new GridLayout(1,2));
 
         JPanel Stock = new JPanel();
+        Stock.setLayout(new GridLayout(1,1));
         Stock.setBorder(BorderFactory.createTitledBorder(border1, "Voorraad"));
+
+        JPanel OrderInfo = new JPanel();
+        OrderInfo.setLayout(new BorderLayout());
+        OrderInfo.setBorder(BorderFactory.createTitledBorder(border1, "Order info"));
 
         //Create buttons
         jbAddOrder = new JButton("Bestelling toevoegen");
@@ -99,7 +105,6 @@ public class Screen extends JFrame {
 
         jlOrderInfo = new JLabel();
         jlOrderInfo.setVerticalAlignment(JLabel.TOP);
-        jlOrderInfo.setBorder(BorderFactory.createTitledBorder(border1, "Order info"));
 
         jlStockInfo = new JLabel();
         jlStockInfo.setVerticalAlignment(JLabel.TOP);
@@ -117,7 +122,6 @@ public class Screen extends JFrame {
         jcRecentOrders = new JComboBox(recentOrders);
 
         jsStock = new JScrollPane(jlStockList);
-
 
 
         //Specifieke volgorde voor het toevoegen
@@ -145,7 +149,10 @@ public class Screen extends JFrame {
         StockAndGetProduct.add(GetProduct);
 
         RightSide.add(StockAndGetProduct);
-        RightSide.add(jlOrderInfo);
+
+        OrderInfo.add(jlOrderInfo);
+        RightSide.add(OrderInfo);
+
         RightSide.add(jlStockInfo);
 
         VisualAndRightSide.add(RightSide);
