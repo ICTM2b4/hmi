@@ -23,11 +23,11 @@ public class Screen extends JFrame {
     private JTextField jtOrderNumber;
 
     private String[] recentOrders = {};
-    private JComboBox jcRecentOrders = new JComboBox(recentOrders);
+    private JComboBox jcRecentOrders;
 
-    private String[] stock = {"test", "test", "test", "test", "test"};
-    private JList jliStock = new JList(stock);
-
+    private JList jlStockList;
+    private JScrollPane jsStock;
+    private String[] stocklist = {"Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal"};
 
     public Screen() {
         setTitle("HMI");
@@ -108,9 +108,16 @@ public class Screen extends JFrame {
         jlOrderNumber = new JLabel("Ordernummer:");
         jlOrderInfo.setHorizontalAlignment(JLabel.LEFT);
 
-        //Create textfields
+        jlStockList = new JList(stocklist);
+
+        //Create the rest
 
         jtOrderNumber = new JTextField();
+
+        jcRecentOrders = new JComboBox(recentOrders);
+
+        jsStock = new JScrollPane(jlStockList);
+
 
 
         //Specifieke volgorde voor het toevoegen
@@ -122,7 +129,7 @@ public class Screen extends JFrame {
 
         VisualAndRightSide.add(jlVisual);
 
-        Stock.add(jliStock);
+        Stock.add(jsStock);
         StockAndGetProduct.add(Stock);
 
         OrderNumberAndText.add(jlOrderNumber);
