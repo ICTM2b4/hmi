@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class OrderInfoPanel extends JFrame {
     private static JPanel OrderInfo = new JPanel();
@@ -23,16 +24,14 @@ public class OrderInfoPanel extends JFrame {
     private static JLabel jlEmail = new JLabel("E-mail: ");
     private static JLabel jlPhoneNumber = new JLabel("Telefoon: ");
     // data
-    private static JLabel jlCustomerName = new JLabel("Piet");
-    private static JLabel jlCustomerAddress = new JLabel("Campus 5, Zwolle");
-    private static JLabel jlCustomerEmail = new JLabel("piet@gmail.com");
-    private static JLabel jlCustomerPhoneNumber = new JLabel("112");
-    private static Order selectOrder;
-    //TODO: update the product list when a new order is selected
-    static String[] orderInfoList = { "Product", "Product", "Product", "Product", "Product", "Product", "Product",
-            "Product",
-            "Product" };
-    private static JList<String> jlOrderInfoList = new JList<>(orderInfoList);
+    private static JLabel jlCustomerName = new JLabel("Selecteer een order");
+    private static JLabel jlCustomerAddress = new JLabel("Selecteer een order");
+    private static JLabel jlCustomerEmail = new JLabel("Selecteer een order");
+    private static JLabel jlCustomerPhoneNumber = new JLabel("Selecteer een order");
+
+    public static Order selectOrder;
+    private static DefaultListModel<String> orderInfoListModel = new DefaultListModel<>();
+    private static JList<String> jlOrderInfoList = new JList<>(orderInfoListModel);
     private static JScrollPane jsOrderInfo = new JScrollPane(jlOrderInfoList);
 
     public static void setSelectedOrder(Order order) {
@@ -48,6 +47,11 @@ public class OrderInfoPanel extends JFrame {
         jlCustomerAddress.setText(selectOrder.getCustomer().getAddress());
         jlCustomerEmail.setText(selectOrder.getCustomer().getEmail());
         jlCustomerPhoneNumber.setText(selectOrder.getCustomer().getPhoneNumber());
+        ArrayList<Product> products = selectOrder.getProducts();
+        orderInfoListModel.clear();
+        for (Product product : products) {
+            orderInfoListModel.addElement(product.getAmount() + ": " + product.getName());
+        }
     }
 
     public JPanel getOrderInfo() {

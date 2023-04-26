@@ -19,4 +19,9 @@ public class Product {
     public String getName() {
         return name;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
 }
