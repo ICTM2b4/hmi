@@ -3,79 +3,6 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class Screen extends JFrame {
-    private JButton jbAddOrder;
-    private JButton jbRefresh;
-    private JButton jbGetProduct;
-    private JButton jbChangeProduct;
-    private JButton jbGetOrder;
-    private JButton jbPrintOrder;
-
-    private JLabel jlEmpty;
-    private JLabel jlEmpty2;
-    private JLabel jlEmpty3;
-    private JLabel jlEmpty4;
-    private JLabel jlEmpty5;
-    private JLabel jlEmpty6;
-    private JLabel jlEmpty7;
-    private JLabel jlEmpty8;
-    private JLabel jlVisual;
-    private JLabel jlStock;
-    private JLabel jlGetProduct;
-    private JLabel jlPackingInfo;
-    private JLabel jlOrderInfo;
-    private JLabel jlOrderNumber;
-    private JLabel jlName;
-    private JLabel jlAddress;
-    private JLabel jlEmail;
-    private JLabel jlPhoneNumber;
-    private JLabel jlCustomerName;
-    private JLabel jlCustomerAddress;
-    private JLabel jlCustomerEmail;
-    private JLabel jlCustomerPhoneNumber;
-    private JLabel jlProducts;
-
-    private JTextField jtOrderNumber;
-
-    private String[] recentOrders = {};
-    private JComboBox jcRecentOrders;
-
-    private JTable jtStockList;
-    private JScrollPane jsStock;
-    private String[] stocklistColumnNames = {"Producten", "Aantal"};
-    private Object[][] stocklist = {
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"},
-            {"Product", "aantal"}
-    };
-    private JList jlOrderInfoList;
-    private JScrollPane jsOrderInfo;
-    private String[] orderInfoList = {"Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product"};
-
-    private JTable jtPackingList;
-    private JScrollPane jsPackingList;
-    private String[] packingListColumnNames = {"Producten", "Aantal"};
-    private Object[][] packingList = {
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"},
-            {"Product", "Aantal"}
-    };
-
     Font boldFont = new Font("Bold", Font.BOLD, 12);
 
     public Screen() {
@@ -147,78 +74,108 @@ public class Screen extends JFrame {
         PackingListBottom.setLayout(new GridLayout(1,4));
 
         //Create buttons
-        jbAddOrder = new JButton("Bestelling toevoegen");
+        JButton jbAddOrder = new JButton("Bestelling toevoegen");
 
-        jbRefresh = new JButton("Refresh");
+        JButton jbRefresh = new JButton("Refresh");
 
-        jbGetProduct = new JButton("Ophalen");
+        JButton jbGetProduct = new JButton("Ophalen");
 
-        jbChangeProduct = new JButton("Wijzigen");
+        JButton jbChangeProduct = new JButton("Wijzigen");
 
-        jbGetOrder = new JButton("Verwerken");
+        JButton jbGetOrder = new JButton("Verwerken");
 
-        jbPrintOrder = new JButton("Print");
+        JButton jbPrintOrder = new JButton("Print");
 
         //Create labels
-        jlEmpty = new JLabel();
-        jlEmpty2 = new JLabel();
-        jlEmpty3 = new JLabel();
-        jlEmpty4 = new JLabel();
-        jlEmpty5 = new JLabel();
-        jlEmpty6 = new JLabel();
-        jlEmpty7 = new JLabel();
-        jlEmpty8 = new JLabel();
+        JLabel jlEmpty = new JLabel();
+        JLabel jlEmpty2 = new JLabel();
+        JLabel jlEmpty3 = new JLabel();
+        JLabel jlEmpty4 = new JLabel();
+        JLabel jlEmpty5 = new JLabel();
+        JLabel jlEmpty6 = new JLabel();
+        JLabel jlEmpty7 = new JLabel();
+        JLabel jlEmpty8 = new JLabel();
 
-        jlVisual = new JLabel();
+        JLabel jlVisual = new JLabel();
         jlVisual.setVerticalAlignment(JLabel.TOP);
         jlVisual.setBorder(BorderFactory.createTitledBorder(border1, "Visuele kast"));
 
-        jlStock = new JLabel();
+        JLabel jlStock = new JLabel();
         jlStock.setVerticalAlignment(JLabel.TOP);
 
-        jlGetProduct = new JLabel();
+        JLabel jlGetProduct = new JLabel();
         jlGetProduct.setVerticalAlignment(JLabel.TOP);
 
-        jlOrderInfo = new JLabel();
+        JLabel jlOrderInfo = new JLabel();
         jlOrderInfo.setVerticalAlignment(JLabel.TOP);
 
-        jlPackingInfo = new JLabel();
+        JLabel jlPackingInfo = new JLabel();
         jlPackingInfo.setVerticalAlignment(JLabel.TOP);
 
-        jlOrderNumber = new JLabel("Ordernummer:");
+        JLabel jlOrderNumber = new JLabel("Ordernummer:");
         jlOrderInfo.setHorizontalAlignment(JLabel.LEFT);
 
-        jlOrderInfoList = new JList(orderInfoList);
+        String[] orderInfoList = {"Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product"};
+        JList<String> jlOrderInfoList = new JList<>(orderInfoList);
 
-        jlName = new JLabel("Naam: ");
-        jlAddress = new JLabel("Adres: ");
-        jlEmail = new JLabel("E-mail: ");
-        jlPhoneNumber = new JLabel("Telefoon: ");
+        JLabel jlName = new JLabel("Naam: ");
+        JLabel jlAddress = new JLabel("Adres: ");
+        JLabel jlEmail = new JLabel("E-mail: ");
+        JLabel jlPhoneNumber = new JLabel("Telefoon: ");
 
-        jlCustomerName = new JLabel("Piet");
-        jlCustomerAddress = new JLabel("Campus 5, Zwolle");
-        jlCustomerEmail = new JLabel("piet@gmail.com");
-        jlCustomerPhoneNumber = new JLabel("112");
+        JLabel jlCustomerName = new JLabel("Piet");
+        JLabel jlCustomerAddress = new JLabel("Campus 5, Zwolle");
+        JLabel jlCustomerEmail = new JLabel("piet@gmail.com");
+        JLabel jlCustomerPhoneNumber = new JLabel("112");
 
-        jlProducts = new JLabel("Producten: ");
+        JLabel jlProducts = new JLabel("Producten: ");
 
         //Create the rest
 
-        jtOrderNumber = new JTextField();
+        JTextField jtOrderNumber = new JTextField();
 
-        jcRecentOrders = new JComboBox(recentOrders);
+        String[] recentOrders = {};
+        JComboBox<String> jcRecentOrders = new JComboBox<>(recentOrders);
 
-        jtStockList = new JTable(stocklist, stocklistColumnNames);
+        String[] stocklistColumnNames = {"Producten", "Aantal"};
+        Object[][] stocklist = {
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"},
+                {"Product", "aantal"}
+        };
+        JTable jtStockList = new JTable(stocklist, stocklistColumnNames);
         jtStockList.setFont(boldFont);
 
-        jsStock = new JScrollPane(jtStockList);
+        JScrollPane jsStock = new JScrollPane(jtStockList);
 
-        jsOrderInfo = new JScrollPane(jlOrderInfoList);
+        JScrollPane jsOrderInfo = new JScrollPane(jlOrderInfoList);
 
-        jtPackingList = new JTable(packingList, packingListColumnNames);
+        String[] packingListColumnNames = {"Producten", "Aantal"};
+        Object[][] packingList = {
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"},
+                {"Product", "Aantal"}
+        };
+        JTable jtPackingList = new JTable(packingList, packingListColumnNames);
         jtPackingList.setFont(boldFont);
 
-        jsPackingList = new JScrollPane(jtPackingList);
+        JScrollPane jsPackingList = new JScrollPane(jtPackingList);
 
 
         //Specifieke volgorde voor het toevoegen
