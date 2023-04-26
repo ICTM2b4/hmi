@@ -13,7 +13,7 @@ public class Screen extends JFrame {
     private JLabel jlEmpty;
     private JLabel jlEmpty2;
     private JLabel jlEmpty3;
-    private JLabel jlVisual;
+    private JPanel jpVisual;
     private JLabel jlStock;
     private JLabel jlGetProduct;
     private JLabel jlStockInfo;
@@ -93,9 +93,8 @@ public class Screen extends JFrame {
         jlEmpty2 = new JLabel();
         jlEmpty3 = new JLabel();
 
-        jlVisual = new JLabel();
-        jlVisual.setVerticalAlignment(JLabel.TOP);
-        jlVisual.setBorder(BorderFactory.createTitledBorder(border1, "Visuele kast"));
+        jpVisual = new Kastpanel();
+        jpVisual.setBorder(BorderFactory.createTitledBorder(border1, "Visuele kast"));
 
         jlStock = new JLabel();
         jlStock.setVerticalAlignment(JLabel.TOP);
@@ -131,7 +130,7 @@ public class Screen extends JFrame {
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
 
-        VisualAndRightSide.add(jlVisual);
+        VisualAndRightSide.add(jpVisual);
 
         Stock.add(jsStock);
         StockAndGetProduct.add(Stock);
