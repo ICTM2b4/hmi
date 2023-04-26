@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class VisualStock extends JFrame {
+public class VisualStockPanel extends JFrame {
     JLabel jlVisual = new JLabel();
 
     public JLabel getVisualStock() {

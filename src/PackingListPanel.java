@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class PackingList extends JFrame {
+public class PackingListPanel extends JFrame {
     JPanel PackingList = new JPanel();
     JPanel PackingListBottom = new JPanel();
 

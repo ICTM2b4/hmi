@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Screen extends JFrame {
+public class Screen extends JFrame implements ActionListener {
 
     public Screen() {
         setTitle("HMI");
@@ -9,10 +11,10 @@ public class Screen extends JFrame {
         setMinimumSize(new Dimension(1000, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Create styles
+        // Create styles
         Style style = new Style();
 
-        //Create panels
+        // Create panels
         JPanel StockAndGetProduct = new JPanel();
         StockAndGetProduct.setLayout(new GridLayout(1, 2));
 
@@ -28,10 +30,10 @@ public class Screen extends JFrame {
         JPanel FullScreen = new JPanel();
         FullScreen.setLayout(new BorderLayout());
 
-        //Create buttons
+        // Create buttons
         JButton jbAddOrder = new JButton("Bestelling toevoegen");
 
-        //Create labels
+        // Create labels
         JLabel jlEmpty = new JLabel();
         JLabel jlEmpty2 = new JLabel();
         JLabel jlEmpty3 = new JLabel();
@@ -40,28 +42,28 @@ public class Screen extends JFrame {
         jlVisual.setVerticalAlignment(JLabel.TOP);
         jlVisual.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Visuele kast"));
 
-        //Specifieke volgorde voor het toevoegen
+        // Specifieke volgorde voor het toevoegen
         AddOrder.add(jbAddOrder);
         AddOrder.add(jlEmpty);
         AddOrder.add(jlEmpty2);
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
 
-        VisualStock visualStock = new VisualStock();
+        VisualStockPanel visualStock = new VisualStockPanel();
         VisualAndRightSide.add(visualStock.getVisualStock());
 
-        Stock stock = new Stock();
+        StockPanel stock = new StockPanel();
         StockAndGetProduct.add(stock.getStock());
 
-        GetProduct getProduct = new GetProduct();
+        GetOrderPanel getProduct = new GetOrderPanel();
         StockAndGetProduct.add(getProduct.getProduct());
 
         RightSide.add(StockAndGetProduct);
 
-        OrderInfo orderInfo = new OrderInfo();
+        OrderInfoPanel orderInfo = new OrderInfoPanel();
         RightSide.add(orderInfo.getOrderInfo());
 
-        PackingList packingList = new PackingList();
+        PackingListPanel packingList = new PackingListPanel();
         RightSide.add(packingList.getPackingList());
 
         VisualAndRightSide.add(RightSide);
@@ -71,5 +73,11 @@ public class Screen extends JFrame {
         add(FullScreen);
 
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }

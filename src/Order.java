@@ -8,9 +8,43 @@ public class Order {
     private ArrayList<Product> products = new ArrayList<Product>();
 
     public Order(int orderNumber) {
+        if (!checkIfOrderExists(orderNumber))
+            throw new IllegalArgumentException("Order bestaat niet");
         this.orderNumber = orderNumber;
         getProductsFromDatabase();
         getCustomerFromDatabase();
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    private boolean checkIfOrderExists(int orderNumber) {
+        try {
+            // Create a statement
+            Statement statement = Database.connection.createStatement();
+
+            // Execute a statement
+            ResultSet result = statement
+                    .executeQuery("SELECT * FROM orders where order_number = " + orderNumber + ";");
+
+            // Loop over the result set
+            while (result.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to execute the query.");
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -51,6 +85,10 @@ public class Order {
             ResultSet result = statement
                     .executeQuery("SELECT * FROM order_lines where order_number = " + this.orderNumber + ";");
 
+            if (!result.isBeforeFirst()) {
+                System.out.println("No products found for order number " + this.orderNumber);
+                return;
+            }
             // Loop over the result set
             while (result.next()) {
                 products.add(getProductFromDatabase(result.getInt("product_id"), result.getInt("amount")));

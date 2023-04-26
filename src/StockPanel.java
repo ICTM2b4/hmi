@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Stock extends JFrame {
+public class StockPanel extends JFrame {
     String[] stocklistColumnNames = {"Producten", "Aantal"};
     Object[][] stocklist = {
             {"Product", "aantal"},
