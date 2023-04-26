@@ -13,21 +13,67 @@ public class Screen extends JFrame {
     private JLabel jlEmpty;
     private JLabel jlEmpty2;
     private JLabel jlEmpty3;
+    private JLabel jlEmpty4;
+    private JLabel jlEmpty5;
     private JLabel jlVisual;
     private JLabel jlStock;
     private JLabel jlGetProduct;
-    private JLabel jlStockInfo;
+    private JLabel jlPackingInfo;
     private JLabel jlOrderInfo;
     private JLabel jlOrderNumber;
+    private JLabel jlName;
+    private JLabel jlAddress;
+    private JLabel jlEmail;
+    private JLabel jlPhoneNumber;
+    private JLabel jlCustomerName;
+    private JLabel jlCustomerAddress;
+    private JLabel jlCustomerEmail;
+    private JLabel jlCustomerPhoneNumber;
+    private JLabel jlProducts;
 
     private JTextField jtOrderNumber;
 
     private String[] recentOrders = {};
     private JComboBox jcRecentOrders;
 
-    private JList jlStockList;
+    private JTable jtStockList;
     private JScrollPane jsStock;
-    private String[] stocklist = {"Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal"};
+    private String[] stocklistColumnNames = {"Producten", "Aantal"};
+    private Object[][] stocklist = {
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"},
+            {"Product", "aantal"}
+    };
+    private JList jlOrderInfoList;
+    private JScrollPane jsOrderInfo;
+    private String[] orderInfoList = {"Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product", "Product"};
+
+    private JTable jtPackingList;
+    private JScrollPane jsPackingList;
+    private String[] packingListColumnNames = {"Producten", "Aantal"};
+    private Object[][] packingList = {
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"},
+            {"Product", "Aantal"}
+    };
+
+    Font boldFont = new Font("Bold", Font.BOLD, 12);
 
     public Screen() {
         setTitle("HMI");
@@ -75,6 +121,25 @@ public class Screen extends JFrame {
         OrderInfo.setLayout(new BorderLayout());
         OrderInfo.setBorder(BorderFactory.createTitledBorder(border1, "Order info"));
 
+        JPanel OrderInfoMiddle = new JPanel();
+        OrderInfoMiddle.setLayout(new GridLayout(1,4));
+
+        JPanel CustomerInfo1 = new JPanel();
+        CustomerInfo1.setLayout(new GridLayout(4,1));
+
+        JPanel CustomerInfo2 = new JPanel();
+        CustomerInfo2.setLayout(new GridLayout(4,1));
+
+        JPanel OrderInfoProducts = new JPanel();
+        OrderInfoProducts.setLayout(new GridLayout(4,1));
+
+        JPanel OrderInfoButtons = new JPanel();
+        OrderInfoButtons.setLayout(new GridLayout(1,4));
+
+        JPanel PackingList = new JPanel();
+        PackingList.setLayout(new GridLayout(1,1));
+        PackingList.setBorder(BorderFactory.createTitledBorder(border1, "Pakbon"));
+
         //Create buttons
         jbAddOrder = new JButton("Bestelling toevoegen");
 
@@ -92,6 +157,8 @@ public class Screen extends JFrame {
         jlEmpty = new JLabel();
         jlEmpty2 = new JLabel();
         jlEmpty3 = new JLabel();
+        jlEmpty4 = new JLabel();
+        jlEmpty5 = new JLabel();
 
         jlVisual = new JLabel();
         jlVisual.setVerticalAlignment(JLabel.TOP);
@@ -106,14 +173,25 @@ public class Screen extends JFrame {
         jlOrderInfo = new JLabel();
         jlOrderInfo.setVerticalAlignment(JLabel.TOP);
 
-        jlStockInfo = new JLabel();
-        jlStockInfo.setVerticalAlignment(JLabel.TOP);
-        jlStockInfo.setBorder(BorderFactory.createTitledBorder(border1, "Pakbon"));
+        jlPackingInfo = new JLabel();
+        jlPackingInfo.setVerticalAlignment(JLabel.TOP);
 
         jlOrderNumber = new JLabel("Ordernummer:");
         jlOrderInfo.setHorizontalAlignment(JLabel.LEFT);
 
-        jlStockList = new JList(stocklist);
+        jlOrderInfoList = new JList(orderInfoList);
+
+        jlName = new JLabel("Naam: ");
+        jlAddress = new JLabel("Adres: ");
+        jlEmail = new JLabel("E-mail: ");
+        jlPhoneNumber = new JLabel("Telefoon: ");
+
+        jlCustomerName = new JLabel("Piet");
+        jlCustomerAddress = new JLabel("Campus 5, Zwolle");
+        jlCustomerEmail = new JLabel("piet@gmail.com");
+        jlCustomerPhoneNumber = new JLabel("112");
+
+        jlProducts = new JLabel("Producten: ");
 
         //Create the rest
 
@@ -121,7 +199,17 @@ public class Screen extends JFrame {
 
         jcRecentOrders = new JComboBox(recentOrders);
 
-        jsStock = new JScrollPane(jlStockList);
+        jtStockList = new JTable(stocklist, stocklistColumnNames);
+        jtStockList.setFont(boldFont);
+
+        jsStock = new JScrollPane(jtStockList);
+
+        jsOrderInfo = new JScrollPane(jlOrderInfoList);
+
+        jtPackingList = new JTable(packingList, packingListColumnNames);
+        jtPackingList.setFont(boldFont);
+
+        jsPackingList = new JScrollPane(jtPackingList);
 
 
         //Specifieke volgorde voor het toevoegen
@@ -150,10 +238,33 @@ public class Screen extends JFrame {
 
         RightSide.add(StockAndGetProduct);
 
-        OrderInfo.add(jlOrderInfo);
+        OrderInfoButtons.add(jlEmpty4);
+        OrderInfoButtons.add(jlEmpty5);
+        OrderInfoButtons.add(jbChangeProduct);
+        OrderInfoButtons.add(jbGetOrder);
+        OrderInfo.add(OrderInfoButtons, BorderLayout.PAGE_END);
+
+        CustomerInfo1.add(jlName);
+        CustomerInfo1.add(jlAddress);
+        CustomerInfo1.add(jlEmail);
+        CustomerInfo1.add(jlPhoneNumber);
+        OrderInfoMiddle.add(CustomerInfo1);
+
+        CustomerInfo2.add(jlCustomerName);
+        CustomerInfo2.add(jlCustomerAddress);
+        CustomerInfo2.add(jlCustomerEmail);
+        CustomerInfo2.add(jlCustomerPhoneNumber);
+        OrderInfoMiddle.add(CustomerInfo2);
+
+        OrderInfoProducts.add(jlProducts);
+        OrderInfoMiddle.add(OrderInfoProducts);
+        OrderInfoMiddle.add(jsOrderInfo);
+        OrderInfo.add(OrderInfoMiddle, BorderLayout.CENTER);
+
         RightSide.add(OrderInfo);
 
-        RightSide.add(jlStockInfo);
+        PackingList.add(jsPackingList);
+        RightSide.add(PackingList);
 
         VisualAndRightSide.add(RightSide);
 
