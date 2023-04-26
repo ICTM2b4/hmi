@@ -15,6 +15,9 @@ public class Screen extends JFrame {
     private JLabel jlEmpty3;
     private JLabel jlEmpty4;
     private JLabel jlEmpty5;
+    private JLabel jlEmpty6;
+    private JLabel jlEmpty7;
+    private JLabel jlEmpty8;
     private JLabel jlVisual;
     private JLabel jlStock;
     private JLabel jlGetProduct;
@@ -137,8 +140,11 @@ public class Screen extends JFrame {
         OrderInfoButtons.setLayout(new GridLayout(1,4));
 
         JPanel PackingList = new JPanel();
-        PackingList.setLayout(new GridLayout(1,1));
+        PackingList.setLayout(new BorderLayout());
         PackingList.setBorder(BorderFactory.createTitledBorder(border1, "Pakbon"));
+
+        JPanel PackingListBottom = new JPanel();
+        PackingListBottom.setLayout(new GridLayout(1,4));
 
         //Create buttons
         jbAddOrder = new JButton("Bestelling toevoegen");
@@ -159,6 +165,9 @@ public class Screen extends JFrame {
         jlEmpty3 = new JLabel();
         jlEmpty4 = new JLabel();
         jlEmpty5 = new JLabel();
+        jlEmpty6 = new JLabel();
+        jlEmpty7 = new JLabel();
+        jlEmpty8 = new JLabel();
 
         jlVisual = new JLabel();
         jlVisual.setVerticalAlignment(JLabel.TOP);
@@ -263,7 +272,14 @@ public class Screen extends JFrame {
 
         RightSide.add(OrderInfo);
 
-        PackingList.add(jsPackingList);
+        PackingList.add(jsPackingList, BorderLayout.CENTER);
+
+        PackingListBottom.add(jlEmpty6);
+        PackingListBottom.add(jlEmpty7);
+        PackingListBottom.add(jlEmpty8);
+        PackingListBottom.add(jbPrintOrder);
+
+        PackingList.add(PackingListBottom, BorderLayout.PAGE_END);
         RightSide.add(PackingList);
 
         VisualAndRightSide.add(RightSide);
