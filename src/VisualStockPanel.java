@@ -1,12 +1,11 @@
 import javax.swing.*;
 
 public class VisualStockPanel extends JFrame {
-    JLabel jlVisual = new JLabel();
+    JPanel jpVisual = new Kastpanel();
 
-    public JLabel getVisualStock() {
+    public JPanel getVisualStock() {
         Style border = new Style();
-        jlVisual.setVerticalAlignment(JLabel.TOP);
-        jlVisual.setBorder(BorderFactory.createTitledBorder(border.getBorder(), "Visuele kast"));
-        return jlVisual;
+        jpVisual.setBorder(BorderFactory.createTitledBorder(border.getBorder(), "Visuele kast"));
+        return jpVisual;
     }
 }

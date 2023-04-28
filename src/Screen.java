@@ -1,9 +1,36 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Screen extends JFrame implements ActionListener {
+public class Screen extends JFrame implements ActionListener{
+    private JButton jbAddOrder;
+    private JButton jbRefresh;
+    private JButton jbGetProduct;
+    private JButton jbChangeProduct;
+    private JButton jbGetOrder;
+    private JButton jbPrintOrder;
+
+    private JLabel jlEmpty;
+    private JLabel jlEmpty2;
+    private JLabel jlEmpty3;
+    private JLabel jlStock;
+    private JLabel jlGetProduct;
+    private JLabel jlStockInfo;
+    private JLabel jlOrderInfo;
+    private JLabel jlOrderNumber;
+
+    private JTextField jtOrderNumber;
+
+    private String[] recentOrders = {};
+    private JComboBox jcRecentOrders;
+
+    private JList jlStockList;
+    private JScrollPane jsStock;
+    private String[] stocklist = { "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal",
+            "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal",
+            "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal", "Product: " + "aantal" };
 
     public Screen() {
         setTitle("HMI");
@@ -38,10 +65,6 @@ public class Screen extends JFrame implements ActionListener {
         JLabel jlEmpty2 = new JLabel();
         JLabel jlEmpty3 = new JLabel();
 
-        JLabel jlVisual = new JLabel();
-        jlVisual.setVerticalAlignment(JLabel.TOP);
-        jlVisual.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Visuele kast"));
-
         // Specifieke volgorde voor het toevoegen
         AddOrder.add(jbAddOrder);
         AddOrder.add(jlEmpty);
@@ -69,7 +92,6 @@ public class Screen extends JFrame implements ActionListener {
         VisualAndRightSide.add(RightSide);
 
         FullScreen.add(VisualAndRightSide, BorderLayout.CENTER);
-
         add(FullScreen);
 
         setVisible(true);
