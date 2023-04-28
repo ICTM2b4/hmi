@@ -29,25 +29,24 @@ public class OrderInfoPanel extends JFrame {
     private static JLabel jlCustomerEmail = new JLabel("Selecteer een order");
     private static JLabel jlCustomerPhoneNumber = new JLabel("Selecteer een order");
 
-    public static Order selectOrder;
     private static DefaultListModel<String> orderInfoListModel = new DefaultListModel<>();
     private static JList<String> jlOrderInfoList = new JList<>(orderInfoListModel);
     private static JScrollPane jsOrderInfo = new JScrollPane(jlOrderInfoList);
 
     public static void setSelectedOrder(Order order) {
-        selectOrder = order;
-        if (selectOrder == null) {
+        Order.selectOrder = order;
+        if (Order.selectOrder == null) {
             jlCustomerName.setText("");
             jlCustomerAddress.setText("");
             jlCustomerEmail.setText("");
             jlCustomerPhoneNumber.setText("");
             return;
         }
-        jlCustomerName.setText(selectOrder.getCustomer().getName());
-        jlCustomerAddress.setText(selectOrder.getCustomer().getAddress());
-        jlCustomerEmail.setText(selectOrder.getCustomer().getEmail());
-        jlCustomerPhoneNumber.setText(selectOrder.getCustomer().getPhoneNumber());
-        ArrayList<Product> products = selectOrder.getProducts();
+        jlCustomerName.setText(Order.selectOrder.getCustomer().getName());
+        jlCustomerAddress.setText(Order.selectOrder.getCustomer().getAddress());
+        jlCustomerEmail.setText(Order.selectOrder.getCustomer().getEmail());
+        jlCustomerPhoneNumber.setText(Order.selectOrder.getCustomer().getPhoneNumber());
+        ArrayList<Product> products = Order.selectOrder.getProducts();
         orderInfoListModel.clear();
         for (Product product : products) {
             orderInfoListModel.addElement(product.getAmount() + ": " + product.getName());

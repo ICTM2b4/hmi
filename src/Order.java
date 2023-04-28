@@ -6,6 +6,7 @@ public class Order {
     // arrayList of products
     private Customer customer;
     private ArrayList<Product> products = new ArrayList<Product>();
+    public static Order selectOrder;
 
     public Order(int orderNumber) {
         if (!checkIfOrderExists(orderNumber))
