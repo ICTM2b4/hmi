@@ -26,7 +26,6 @@ public Kastpanel(){
             for (int i = 0; i < 5; i++) {
                 g2.setColor(Color.red);
                 g2.fillRect(Integer.valueOf((int) ((47 * map(getWidth(), 492, 960, 1.30, 1)) + (i * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((60 * map(getHeight(), 435, 983, 1.30, 1)) + (h * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), (getWidth() / 44) * 5, (getHeight() / 40) *5);
-                System.out.println(Integer.valueOf((int) ((50.628 * map(getWidth(), 492, 960, 1.30, 1)) + (i * (map(getWidth(), 492, 960, 2.15, 1) * 75)))));
                 g2.setColor(Color.black);
                 g2.drawRect(Integer.valueOf((int) ((47 * map(getWidth(), 492, 960, 1.30, 1)) + (i * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((60 * map(getHeight(), 435, 983, 1.30, 1)) + (h * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), (getWidth() / 44) * 5, (getHeight() / 40) *5);
             }
