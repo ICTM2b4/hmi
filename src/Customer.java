@@ -17,6 +17,25 @@ public class Customer {
         getCustomerFromDatabase();
     }
 
+    public String getName() {
+        if (this.prefix == null) {
+            return this.firstName + " " + this.lastName;
+        }
+        return this.firstName + " " + this.prefix + " " + this.lastName;
+    }
+
+    public String getAddress() {
+        return this.streetName + " " + this.houseNumber + ", " + this.postalCode + " " + this.city;
+    }
+
+    public String getPhoneNumber() {
+        return Integer.toString(this.phoneNumber);
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
     @Override
     public String toString() {
         return "Customer [id= " + id + ", firstName= " + firstName + ", prefix= " + prefix + ", lastName= " + lastName

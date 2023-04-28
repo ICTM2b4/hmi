@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Screen extends JFrame {
+public class Screen extends JFrame implements ActionListener{
     private JButton jbAddOrder;
     private JButton jbRefresh;
     private JButton jbGetProduct;
@@ -70,21 +72,21 @@ public class Screen extends JFrame {
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
 
-        VisualStock visualStock = new VisualStock();
+        VisualStockPanel visualStock = new VisualStockPanel();
         VisualAndRightSide.add(visualStock.getVisualStock());
 
-        Stock stock = new Stock();
+        StockPanel stock = new StockPanel();
         StockAndGetProduct.add(stock.getStock());
 
-        GetProduct getProduct = new GetProduct();
+        GetOrderPanel getProduct = new GetOrderPanel();
         StockAndGetProduct.add(getProduct.getProduct());
 
         RightSide.add(StockAndGetProduct);
 
-        OrderInfo orderInfo = new OrderInfo();
+        OrderInfoPanel orderInfo = new OrderInfoPanel();
         RightSide.add(orderInfo.getOrderInfo());
 
-        PackingList packingList = new PackingList();
+        PackingListPanel packingList = new PackingListPanel();
         RightSide.add(packingList.getPackingList());
 
         VisualAndRightSide.add(RightSide);
@@ -93,5 +95,11 @@ public class Screen extends JFrame {
         add(FullScreen);
 
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }
