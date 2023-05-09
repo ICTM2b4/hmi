@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class OrderInfoPanel extends JFrame {
+public class OrderInfoPanel extends JFrame implements ActionListener {
     private static JPanel OrderInfo = new JPanel();
     private static JPanel OrderInfoMiddle = new JPanel();
     private static JPanel CustomerInfo1 = new JPanel();
@@ -94,6 +96,13 @@ public class OrderInfoPanel extends JFrame {
         OrderInfoMiddle.add(jsOrderInfo);
         OrderInfo.add(OrderInfoMiddle, BorderLayout.CENTER);
 
+        jbChangeProduct.addActionListener(this);
+
         return OrderInfo;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        WijzigDialog dialog = new WijzigDialog();
     }
 }
