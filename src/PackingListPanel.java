@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PackingListPanel extends JFrame {
+public class PackingListPanel extends JFrame implements ActionListener {
     JPanel PackingList = new JPanel();
     JPanel PackingListBottom = new JPanel();
 
@@ -50,9 +52,16 @@ public class PackingListPanel extends JFrame {
         PackingListBottom.add(jlEmpty7);
         PackingListBottom.add(jlEmpty8);
         PackingListBottom.add(jbPrintOrder);
+        jbPrintOrder.addActionListener(this);
 
         PackingList.add(PackingListBottom, BorderLayout.PAGE_END);
 
         return PackingList;
     }
+ @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Print")) {
+            System.out.println("Print");
+            GeneratePDF.generatePDF();
+        }}
 }
