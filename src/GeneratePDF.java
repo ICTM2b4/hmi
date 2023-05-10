@@ -4,12 +4,14 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class GeneratePDF {
+    JFileChooser fc;
 
 public static void generatePDF() {
 
@@ -17,6 +19,7 @@ public static void generatePDF() {
         //Create Document instance.
         Document document = new Document();
 
+        new SelectFileLocation();
         //Create OutputStream instance.
         OutputStream outputStream =
                 new FileOutputStream(new File("C:\\\\Users\\\\tygov\\\\Downloads\\"+ Order.selectOrder.getOrderNumber() + ".pdf"));

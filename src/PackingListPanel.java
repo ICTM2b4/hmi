@@ -62,6 +62,7 @@ public class PackingListPanel extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Print")) {
             System.out.println("Print");
+
             GeneratePDF.generatePDF();
         }}
 }
