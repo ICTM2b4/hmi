@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Screen extends JFrame implements ActionListener{
+public class Screen extends JFrame implements ActionListener {
     private JButton jbAddOrder;
     private JButton jbRefresh;
     private JButton jbGetProduct;
