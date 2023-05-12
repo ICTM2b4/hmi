@@ -11,6 +11,7 @@ private String fileLocation;
         //Create a file chooser
          fc = new JFileChooser();
             fc.setCurrentDirectory(new java.io.File(System.getProperty("user.home") + "\\Downloads\\"));
+            fc.setAcceptAllFileFilterUsed(false);
             fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF Documents", "pdf"));
             fc.setSelectedFile(new File(orderNumber ));
 //In response to a button click:
