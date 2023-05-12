@@ -10,8 +10,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class GeneratePDF {
-    // JFileChooser fc;
 
+/* gerenratePDF file */
     public static void generatePDF() {
 
         try {
@@ -72,17 +72,7 @@ public class GeneratePDF {
 
                 document.add(pdfPTable2);
 
-                // document.add(new Paragraph("Ordernummer: " +
-                // Order.selectOrder.getOrderNumber()));
-                // document.add(new Paragraph("Naam: " +
-                // Order.selectOrder.getCustomer().getName()));
-                // document.add(new Paragraph("Adres: " +
-                // Order.selectOrder.getCustomer().getAddress()));
-                // document.add(new Paragraph("E-mail: " +
-                // Order.selectOrder.getCustomer().getEmail()));
-                // document.add(new Paragraph("Telefoon: " +
-                // Order.selectOrder.getCustomer().getPhoneNumber()));
-                // document.add(new Paragraph(" "));
+
                 PdfPTable pdfPTable = new PdfPTable(new float[] { 75, 25 });
                 // Create cells
                 PdfPCell pdfPCell1 = new PdfPCell(new Paragraph("Productnaam"));
