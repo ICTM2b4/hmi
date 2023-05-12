@@ -53,7 +53,7 @@ public class GetOrderPanel extends JFrame implements ActionListener {
                 System.out.println("Geen geldig getal ingevoerd");
                 return;
             }
-            
+
             try {
                 OrderInfoPanel.setSelectedOrder(new Order(orderNumber));
             } catch (Exception ex) {
