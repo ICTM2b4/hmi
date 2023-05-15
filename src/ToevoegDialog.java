@@ -4,7 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToevoegDialog extends JFrame implements ActionListener {
-    String[] products = {"Product1", "Product2", "Product3"};
+    private String[] products = {"Product1", "Product2", "Product3"};
+    private String voornaam;
+    private String achternaam;
+    private String adres;
+    private String email;
+    private String stad;
+    private String postcode;
 
     private JDialog jdToevoegen;
 
@@ -28,7 +34,12 @@ public class ToevoegDialog extends JFrame implements ActionListener {
     private JTextField jtStad = new JTextField();
     private JTextField jtPostcode = new JTextField();
 
-    private JButton jButton = new JButton();
+    private JButton jbSaveToDatabase = new JButton();
+    private JButton jbAddProducts = new JButton();
+
+    private ProductDialog product;
+    private boolean exist = false;
+
     public ToevoegDialog() {
         jdToevoegen = new JDialog();
 
@@ -43,7 +54,9 @@ public class ToevoegDialog extends JFrame implements ActionListener {
         jlEmail.setText("E-mail ");
         jlStad.setText("Woonplaats ");
         jlPostcode.setText("Postcode ");
-        jButton.setText("Toevoegen aan database");
+
+        jbSaveToDatabase.setText("Toevoegen aan database");
+        jbAddProducts.setText("Voeg producten toe");
 
         GridBagLayout layout = new GridBagLayout();
 
@@ -62,18 +75,14 @@ public class ToevoegDialog extends JFrame implements ActionListener {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(jlBestelling, gbc);
+        gbc.gridwidth = 2;
+        panel.add(jbAddProducts, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        panel.add(producten1, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        panel.add(producten2, gbc);
+        jbAddProducts.addActionListener(this);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
+        gbc.gridwidth = 1;
         panel.add(jlAdres, gbc);
 
         gbc.gridx = 1;
@@ -123,14 +132,14 @@ public class ToevoegDialog extends JFrame implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 9;
         gbc.gridwidth = 2;
-        jButton.addActionListener(this);
-        panel.add(jButton, gbc);
+        jbSaveToDatabase.addActionListener(this);
+        panel.add(jbSaveToDatabase, gbc);
 
 
 
         jdToevoegen.add(panel);
         jdToevoegen.setTitle("Test");
-        jdToevoegen.setSize(250,350);
+        jdToevoegen.setSize(250,300);
         jdToevoegen.setLocation(800,40);
         jdToevoegen.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         jdToevoegen.setVisible(true);
@@ -138,7 +147,36 @@ public class ToevoegDialog extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Woop");
-        jdToevoegen.dispose();
+        if(e.getSource() == jbAddProducts){
+            if (!exist){
+                product = new ProductDialog();
+                exist = true;
+            }else{
+                product.exist();
+            }
+        }
+
+        if(e.getSource() == jbSaveToDatabase) {
+            voornaam = jtVoornaam.getText();
+            achternaam = jtAchternaam.getText();
+            adres = jtAdres.getText();
+            stad = jtStad.getText();
+            email = jtEmail.getText();
+            postcode = jtPostcode.getText();
+
+            //Functie om straatnaam en nummer te splitten
+            //part[0] = straatnaam
+            //part[1] = nummer
+            String[] part = adres.split("(?<=\\D)(?=\\d)");
+
+
+            if (check(voornaam) && check(achternaam) && check(adres) && check(stad) && check(email) && check(postcode)) {
+                jdToevoegen.dispose();
+            }
+        }
+    }
+
+    public boolean check(String line){
+        return !line.equals("");
     }
 }
