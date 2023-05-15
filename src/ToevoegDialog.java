@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToevoegDialog extends JFrame implements ActionListener {
-    private String[] products = {"Product1", "Product2", "Product3"};
+
     private String voornaam;
     private String achternaam;
     private String adres;
@@ -23,9 +23,6 @@ public class ToevoegDialog extends JFrame implements ActionListener {
     private JLabel jlEmail = new JLabel();
     private JLabel jlStad = new JLabel();
     private JLabel jlPostcode = new JLabel();
-
-    private JComboBox producten1 = new JComboBox(products);
-    private JComboBox producten2 = new JComboBox(products);
 
     private JTextField jtAdres = new JTextField();
     private JTextField jtVoornaam = new JTextField();

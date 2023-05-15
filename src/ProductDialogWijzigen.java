@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 
 
-public class ProductDialog extends JFrame implements ActionListener {
+public class ProductDialogWijzigen extends JFrame implements ActionListener {
 
     private JDialog jdProducts = new JDialog();
     private JPanel panel = new JPanel();
@@ -24,7 +24,7 @@ public class ProductDialog extends JFrame implements ActionListener {
     private JList productList = new JList(test);
     private JList copyProductList = new JList(model);
 
-    public ProductDialog(){
+    public ProductDialogWijzigen(){
 
         jButton1.setText("Select");
         jButton2.setText("Finish");
@@ -41,10 +41,15 @@ public class ProductDialog extends JFrame implements ActionListener {
         jButton2.addActionListener(this);
         jButton3.addActionListener(this);
 
+
         productList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         copyProductList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+
         jdProducts.setLayout(new FlowLayout());
+
+        //Voeg al geselecteerde producten hier toe
+        model.addElement("Test");
 
         jdProducts.setSize(420,200);
         jdProducts.setVisible(true);
