@@ -1,7 +1,24 @@
 import java.sql.*;
 public class database_querrys {
 
-//    making the required variables (start update_customers)
+//  update storage
+
+//  making the required variables
+    private int x_locatie = 1;
+    private int y_locatie = 1;
+    private int productid = 0 ;
+    public void updatestorage(){
+        try{
+            Statement statement = Database.connection.createStatement();
+            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = "+ x_locatie +"  && collum = " + y_locatie + ";");
+
+        } catch (SQLException e) {
+            System.err.println("Failed to execute the query.");
+            e.printStackTrace();
+        }
+    }
+
+//  making the required variables (start update_customers)
     private String old_firstName;
     private String old_prefix;
     private String old_lastName;
