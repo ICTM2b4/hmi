@@ -103,6 +103,6 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        WijzigDialog dialog = new WijzigDialog();
+        WijzigDialog dialog = new WijzigDialog(this);
     }
 }

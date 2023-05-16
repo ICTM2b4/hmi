@@ -72,12 +72,7 @@ public class Screen extends JFrame implements ActionListener{
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
 
-        jbAddOrder.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ToevoegDialog toe = new ToevoegDialog();
-            }
-        });
+        jbAddOrder.addActionListener(this);
 
         VisualStockPanel visualStock = new VisualStockPanel();
         VisualAndRightSide.add(visualStock.getVisualStock());
@@ -106,8 +101,13 @@ public class Screen extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        if (e.getActionCommand().equals("Bestelling toevoegen")) {
+            ToevoegDialog toe = new ToevoegDialog(this);
         }
+
+    }
+
+
+
 
 }

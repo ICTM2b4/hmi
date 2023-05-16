@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WijzigDialog extends JFrame implements ActionListener {
+public class WijzigDialog extends JDialog implements ActionListener {
 
     private String voornaam;
     private String achternaam;
@@ -11,8 +11,6 @@ public class WijzigDialog extends JFrame implements ActionListener {
     private String email;
     private String stad;
     private String postcode;
-
-    private JDialog jdToevoegen;
 
     private JLabel jlOrderNummerText = new JLabel();
     private JLabel jlOrderNummer = new JLabel();
@@ -36,9 +34,8 @@ public class WijzigDialog extends JFrame implements ActionListener {
     private ProductDialogWijzigen productWijzigen;
     private boolean exist = false;
 
-    public WijzigDialog() {
-        jdToevoegen = new JDialog();
-
+    public WijzigDialog(JFrame frame) {
+        super(frame, true);
         JPanel panel = new JPanel();
 
         jlOrderNummerText.setText("Order nummer: ");
@@ -136,19 +133,19 @@ public class WijzigDialog extends JFrame implements ActionListener {
 
 
 
-        jdToevoegen.add(panel);
-        jdToevoegen.setTitle("Test");
-        jdToevoegen.setSize(250,300);
-        jdToevoegen.setLocation(800,40);
-        jdToevoegen.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        jdToevoegen.setVisible(true);
+        add(panel);
+        setTitle("Test");
+        setSize(250,300);
+        setLocation(800,40);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbAddProducts) {
             if(!exist){
-                productWijzigen = new ProductDialogWijzigen();
+                productWijzigen = new ProductDialogWijzigen(this);
                 exist = true;
             }else{
                 productWijzigen.exist();
@@ -170,7 +167,7 @@ public class WijzigDialog extends JFrame implements ActionListener {
 
 
             if (check(voornaam) && check(achternaam) && check(adres) && check(stad) && check(email) && check(postcode)) {
-                jdToevoegen.dispose();
+                dispose();
             }
         }
     }

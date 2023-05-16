@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 
 
-public class ProductDialogWijzigen extends JFrame implements ActionListener {
+public class ProductDialogWijzigen extends JDialog implements ActionListener {
 
-    private JDialog jdProducts = new JDialog();
     private JPanel panelGrid = new JPanel(new GridLayout(0,3));
     private JPanel panelBox = new JPanel();
     private String[] test = {"Product 1", "Product 2", "Product 3", "Product 4"
@@ -22,8 +21,8 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
     private JList productList = new JList(test);
     private JList copyProductList = new JList(model);
 
-    public ProductDialogWijzigen(){
-
+    public ProductDialogWijzigen(WijzigDialog frame){
+        super(frame, true);
         selectButton.setText("Select");
         finishButton.setText("Finish");
         removeButton.setText("Remove");
@@ -46,7 +45,7 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
         panelGrid.add(panelBox);
         panelGrid.add(copyProductList);
 
-        jdProducts.add(panelGrid);
+        add(panelGrid);
 
         selectButton.addActionListener(this);
         finishButton.addActionListener(this);
@@ -60,8 +59,8 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
         //Voeg al geselecteerde producten hier toe
         model.addElement("Test");
 
-        jdProducts.setSize(420,200);
-        jdProducts.setVisible(true);
+        setSize(420,200);
+        setVisible(true);
     }
 
     @Override
@@ -72,13 +71,13 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
             model.addElement(productList.getSelectedValue());
         }
         if(e.getSource() == finishButton){
-            jdProducts.setVisible(false);
+            setVisible(false);
         }
         if (e.getSource() == removeButton){
             model.remove(copyProductList.getSelectedIndex());
         }
     }
     public void exist(){
-        jdProducts.setVisible(true);
+        setVisible(true);
     }
 }

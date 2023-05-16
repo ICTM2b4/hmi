@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ToevoegDialog extends JFrame implements ActionListener {
+public class ToevoegDialog extends JDialog implements ActionListener {
 
     private String voornaam;
     private String achternaam;
@@ -37,8 +37,9 @@ public class ToevoegDialog extends JFrame implements ActionListener {
     private ProductDialog product;
     private boolean exist = false;
 
-    public ToevoegDialog() {
-        jdToevoegen = new JDialog();
+    public ToevoegDialog(JFrame frame) {
+        super(frame, true);
+
 
         JPanel panel = new JPanel();
 
@@ -134,19 +135,20 @@ public class ToevoegDialog extends JFrame implements ActionListener {
 
 
 
-        jdToevoegen.add(panel);
-        jdToevoegen.setTitle("Test");
-        jdToevoegen.setSize(250,300);
-        jdToevoegen.setLocation(800,40);
-        jdToevoegen.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        jdToevoegen.setVisible(true);
+        add(panel);
+        setTitle("Test");
+        setSize(250,300);
+        setLocation(800,40);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbAddProducts){
             if (!exist){
-                product = new ProductDialog();
+                product = new ProductDialog(this);
                 exist = true;
             }else{
                 product.exist();
