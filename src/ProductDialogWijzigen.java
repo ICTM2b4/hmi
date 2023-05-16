@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,13 +8,13 @@ import java.awt.event.ActionListener;
 public class ProductDialogWijzigen extends JFrame implements ActionListener {
 
     private JDialog jdProducts = new JDialog();
-    private JPanel panel = new JPanel();
+    private JPanel panelGrid = new JPanel(new GridLayout(0,3));
+    private JPanel panelBox = new JPanel();
     private String[] test = {"Product 1", "Product 2", "Product 3", "Product 4"
             , "Product 5", "Product 6", "Product 7", "Product 8", "Product 9"};
-    private String[] products;
-    private JButton jButton1 = new JButton();
-    private JButton jButton2 = new JButton();
-    private JButton jButton3 = new JButton();
+    private JButton selectButton = new JButton();
+    private JButton finishButton = new JButton();
+    private JButton removeButton = new JButton();
 
 
     DefaultListModel model = new DefaultListModel();
@@ -26,27 +24,38 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
 
     public ProductDialogWijzigen(){
 
-        jButton1.setText("Select");
-        jButton2.setText("Finish");
-        jButton3.setText("Remove");
+        selectButton.setText("Select");
+        finishButton.setText("Finish");
+        removeButton.setText("Remove");
 
-        panel.add(productList);
-        panel.add(jButton1);
-        panel.add(jButton3);
-        panel.add(jButton2);
-        panel.add(copyProductList);
-        jdProducts.add(panel);
+        panelBox.setLayout(new GridBagLayout());
 
-        jButton1.addActionListener(this);
-        jButton2.addActionListener(this);
-        jButton3.addActionListener(this);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panelBox.add(selectButton, gbc);
+
+        gbc.gridy = 1;
+        panelBox.add(removeButton, gbc);
+
+        gbc.gridy = 2;
+        panelBox.add(finishButton, gbc);
+
+        panelGrid.add(productList);
+        panelGrid.add(panelBox);
+        panelGrid.add(copyProductList);
+
+        jdProducts.add(panelGrid);
+
+        selectButton.addActionListener(this);
+        finishButton.addActionListener(this);
+        removeButton.addActionListener(this);
 
 
         productList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         copyProductList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-
-        jdProducts.setLayout(new FlowLayout());
 
         //Voeg al geselecteerde producten hier toe
         model.addElement("Test");
@@ -57,15 +66,15 @@ public class ProductDialogWijzigen extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == jButton1) {
+        if(e.getSource() == selectButton) {
             System.out.println(productList.getSelectedValue());
 
             model.addElement(productList.getSelectedValue());
         }
-        if(e.getSource() == jButton2){
+        if(e.getSource() == finishButton){
             jdProducts.setVisible(false);
         }
-        if (e.getSource() == jButton3){
+        if (e.getSource() == removeButton){
             model.remove(copyProductList.getSelectedIndex());
         }
     }
