@@ -103,6 +103,14 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        WijzigDialog dialog = new WijzigDialog(this);
+        try {
+            WijzigDialog dialog = new WijzigDialog(this);
+        } catch(java.lang.NullPointerException a){
+            jlAddress.setText("Geef een Ordernummer op");
+            jlCustomerAddress.setText("Geef een Ordernummer op");
+            jlCustomerEmail.setText("Geef een Ordernummer op");
+            jlCustomerName.setText("Geef een Ordernummer op");
+            jlCustomerPhoneNumber.setText("Geef een Ordernummer op");
+        }
     }
 }
