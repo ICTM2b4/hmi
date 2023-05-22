@@ -23,5 +23,6 @@ public class Product {
     public int getAmount() {
         return amount;
     }
+    public int getId() {return id;}
 
 }
