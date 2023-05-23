@@ -27,18 +27,27 @@ public class GetOrderPanel extends JFrame implements ActionListener {
         OrderNumberAndText.add(jtOrderNumber);
 
         GetProduct.add(OrderNumberAndText);
-
+        jcRecentOrders.addActionListener(this);
         GetProduct.add(jcRecentOrders);
 
         RefreshAndGetProduct.add(jbRefresh);
         RefreshAndGetProduct.add(jbGetProduct);
         jbGetProduct.addActionListener(this);
+        jbRefresh.addActionListener(this);
         GetProduct.add(RefreshAndGetProduct);
 
         JLabel jlGetProduct = new JLabel();
         jlGetProduct.setVerticalAlignment(JLabel.TOP);
 
         return GetProduct;
+    }
+
+    private void updateRecentOrders() {
+        // Simulate updating the recentOrders array
+        recentOrders = new String[] { "1", "2", "3" };
+
+        // Update the JComboBox with the new data
+        jcRecentOrders.setModel(new DefaultComboBoxModel<>(recentOrders));
     }
 
     @Override
@@ -61,6 +70,12 @@ public class GetOrderPanel extends JFrame implements ActionListener {
                 return;
             }
         }
-
+        if (e.getActionCommand().equals("Refresh")) {
+            updateRecentOrders();
+        }
+        if (e.getSource() == jcRecentOrders) {
+            jtOrderNumber.setText((String) jcRecentOrders.getSelectedItem());
+            updateRecentOrders();
+        }
     }
 }
