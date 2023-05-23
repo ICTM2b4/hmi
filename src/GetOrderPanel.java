@@ -53,7 +53,11 @@ public class GetOrderPanel extends JFrame implements ActionListener {
         updateRecentOrders();
         return GetProduct;
     }
-
+    /*
+     * this method will update the recent orders in the JComboBox
+     * it will get the last 5 orders from the database and put them in the JComboBox
+     * it will also add a default value
+     */
     private void updateRecentOrders() {
         // create arraylist of recent orders
         ArrayList<String> recentOrders = new ArrayList<String>(); // Create an ArrayList object
