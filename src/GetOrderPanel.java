@@ -1,7 +1,19 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GetOrderPanel extends JFrame implements ActionListener {
 
@@ -38,16 +50,40 @@ public class GetOrderPanel extends JFrame implements ActionListener {
 
         JLabel jlGetProduct = new JLabel();
         jlGetProduct.setVerticalAlignment(JLabel.TOP);
-
+        updateRecentOrders();
         return GetProduct;
     }
 
     private void updateRecentOrders() {
-        // Simulate updating the recentOrders array
-        recentOrders = new String[] { "1", "2", "3" };
+        // create arraylist of recent orders
+        ArrayList<String> recentOrders = new ArrayList<String>(); // Create an ArrayList object
+        recentOrders.add("Selecteer een order");
+        try {
+            // Create a statement
+            Statement statement = Database.connection.createStatement();
+
+            // Execute a statement
+            ResultSet result = statement
+                    .executeQuery("SELECT * FROM orders ORDER BY order_number DESC limit 5;");
+
+            if (!result.isBeforeFirst()) {
+                System.out.println("No orders found.");
+                return;
+            }
+
+            // Loop over the result set
+            while (result.next()) {
+                recentOrders.add(result.getString("order_number"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to execute the query.");
+            e.printStackTrace();
+        }
+        // convert arraylist to array
+        String[] recentOrdersArray = recentOrders.toArray(new String[0]);
 
         // Update the JComboBox with the new data
-        jcRecentOrders.setModel(new DefaultComboBoxModel<>(recentOrders));
+        jcRecentOrders.setModel(new DefaultComboBoxModel<>(recentOrdersArray));
     }
 
     @Override
