@@ -1,5 +1,8 @@
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
+import java.awt.*;
+
 public abstract class database_querrys {
 
 //  update storage
@@ -50,7 +53,7 @@ public abstract class database_querrys {
 
 
     //    update customer
-    public void update_customer(String new_firstName,String new_prefix,String new_lastName,String new_streetName,int new_houseNumber,String new_postalCode,String new_city,String new_phoneNumber,String new_email, int id) {
+    public static void update_customer(String new_firstName, String new_prefix, String new_lastName, String new_streetName, int new_houseNumber, String new_postalCode, String new_city, String new_phoneNumber, String new_email, int id) throws SQLException {
         String old_firstName = "";
         String old_prefix = "";
         String old_lastName = "";
@@ -132,7 +135,7 @@ public abstract class database_querrys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
-            e.printStackTrace();
+            throw e;
         }}
 
 //  insert customer (start)
@@ -244,5 +247,43 @@ public abstract class database_querrys {
             e.printStackTrace();
         }
     }
+    public static Color getcolorfromdatabase(int x, int y){
+        String kleur = "";
+        Color color;
+
+        try {
+            // Create a statement
+            Statement statement1 = Database.connection.createStatement();
+
+
+            ResultSet result = statement1.executeQuery("select color from products where id = (select product_id from product_stocks where row = " + y + " && collum = " + x + ");");
+            while (result.next()){
+              kleur = result.getString("color");
+                System.out.println(kleur);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Failed to execute the query.");
+            e.printStackTrace();
+        }
+            if (kleur == "onbekend") {
+                return Color.black;
+            }
+            try {
+                // get color by hex or octal value
+                return Color.decode(kleur);
+            } catch (NumberFormatException nfe) {
+                // if we can't decode lets try to get it by name
+                try {
+                    // try to get a color by name using reflection
+                    final Field f = Color.class.getField(kleur);
+
+                    return (Color) f.get(null);
+                } catch (Exception ce) {
+                    // if we can't get any color return black
+                    return Color.black;
+                }
+            }
+        }
 }
 
