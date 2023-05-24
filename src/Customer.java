@@ -24,8 +24,24 @@ public class Customer {
         return this.firstName + " " + this.prefix + " " + this.lastName;
     }
 
+    public String getFirstName() {
+        return  firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
     public String getAddress() {
         return this.streetName + " " + this.houseNumber + ", " + this.postalCode + " " + this.city;
+    }
+    public String getStad() {
+        return this.city;
+    }
+    public String getStreet_nummer(){
+        return this.streetName + " " + this.houseNumber;
+    }
+    public String getPostalCode(){
+        return this.postalCode;
     }
 
     public String getPhoneNumber() {
@@ -34,6 +50,12 @@ public class Customer {
 
     public String getEmail() {
         return this.email;
+    }
+    public int getId(){
+        return this.id;
+    }
+    public String getPrefix(){
+        return this.prefix;
     }
 
     @Override
