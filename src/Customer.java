@@ -54,6 +54,9 @@ public class Customer {
     public int getId(){
         return this.id;
     }
+    public String getPrefix(){
+        return this.prefix;
+    }
 
     @Override
     public String toString() {
