@@ -24,6 +24,9 @@ public Kastpanel(){
         g2.setStroke(new BasicStroke(2));
         for (int h = 0; h < 5; h++) {
             for (int i = 0; i < 5; i++) {
+                int positiony = h + 1;
+                int positionx = i + 1;
+
                 g2.setColor(Color.red);
                 g2.fillRect(Integer.valueOf((int) ((47 * map(getWidth(), 492, 960, 1.30, 1)) + (i * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((60 * map(getHeight(), 435, 983, 1.30, 1)) + (h * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), (getWidth() / 44) * 5, (getHeight() / 40) *5);
                 g2.setColor(Color.black);
