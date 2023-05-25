@@ -29,7 +29,6 @@ public class PackingListPanel extends JFrame implements ActionListener {
         orderInfoListModel.clear();
         for (Product product : products) {
             orderInfoListModel.addElement(product.getAmount() + "x : " + product.getName());
-            System.out.println(product.getAmount() + product.getName());
         }
     }
 
