@@ -66,7 +66,7 @@ public class Screen extends JFrame implements ActionListener {
         add(FullScreen);
 
         setVisible(true);
-      //  new SelectComPortDialog(this);
+        new SelectComPortDialog(this);
     }
 
     @Override
