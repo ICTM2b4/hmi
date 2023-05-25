@@ -11,6 +11,15 @@ public abstract class Serial {
     static int Parity = SerialPort.NO_PARITY;
 
     /**
+     * this method will return all the available ports.
+     * 
+     * @return
+     */
+    static public SerialPort[] getAvailablePorts() {
+        return availablePorts;
+    }
+
+    /**
      * this method will get all the available ports.
      */
     static public void refreshAvailablePorts() {
@@ -34,7 +43,7 @@ public abstract class Serial {
         connection.openPort();
         // wait 2 seconds to give the arduino time to reset
         Thread.sleep(2000);
-
+        System.out.println("serial connection opened on the " + connection.getSystemPortName() + " port");
     }
 
     /**
