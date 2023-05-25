@@ -55,7 +55,9 @@ public class GetOrderPanel extends JFrame implements ActionListener {
             }
 
             try {
-                OrderInfoPanel.setSelectedOrder(new Order(orderNumber));
+                Order sharedOrderNumber = new Order(orderNumber);
+                OrderInfoPanel.setSelectedOrder(sharedOrderNumber);
+                PackingListPanel.ProductList(sharedOrderNumber);
             } catch (Exception ex) {
                 System.out.println("Geen geldig ordernummer ingevoerd");
                 return;
