@@ -96,7 +96,7 @@ public class GeneratePDF {
                 System.out.println("Pdf created successfully.");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Pdf failed to create.",
+            JOptionPane.showMessageDialog(null, "Pdf niet gegegenereerd.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }

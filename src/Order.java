@@ -43,7 +43,7 @@ public class Order {
                 return true;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+            JOptionPane.showMessageDialog(null, "De opdracht is niet uitgevoerd",
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();

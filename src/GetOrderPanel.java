@@ -73,7 +73,7 @@ public class GetOrderPanel extends JFrame implements ActionListener {
                 recentOrders.add(result.getString("order_number"));
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+            JOptionPane.showMessageDialog(null, "De opdracht is niet uitgevoerd.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();

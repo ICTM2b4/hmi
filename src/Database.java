@@ -20,7 +20,7 @@ public abstract class Database {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the database.");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Failed to connect to the database.",
+            JOptionPane.showMessageDialog(null, "Kan geen verbinding met database maken.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to connect to the database.");
             e.printStackTrace();
@@ -35,7 +35,7 @@ public abstract class Database {
             connection.close();
             System.out.println("Connection closed.");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Failed to close the connection to the database.",
+            JOptionPane.showMessageDialog(null, "Kan geen verbinding met database maken.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to connect to the database.");
             e.printStackTrace();
