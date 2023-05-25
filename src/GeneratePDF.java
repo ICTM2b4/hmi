@@ -4,6 +4,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -95,6 +96,8 @@ public class GeneratePDF {
                 System.out.println("Pdf created successfully.");
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Pdf failed to create.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return;

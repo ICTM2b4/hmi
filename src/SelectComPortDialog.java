@@ -2,10 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import com.fazecast.jSerialComm.SerialPort;
 
@@ -50,6 +47,8 @@ public class SelectComPortDialog extends JDialog implements ActionListener {
             try {
                 Serial.open(jcAvailiblePorts.getSelectedIndex());
             } catch (InterruptedException e1) {
+                JOptionPane.showMessageDialog(null, "Geen geldig com poort geselecteerd",
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 e1.printStackTrace();
             }
             dispose();

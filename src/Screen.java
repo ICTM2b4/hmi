@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,7 +66,7 @@ public class Screen extends JFrame implements ActionListener {
         add(FullScreen);
 
         setVisible(true);
-        new SelectComPortDialog(this);
+      //  new SelectComPortDialog(this);
     }
 
     @Override
