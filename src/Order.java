@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -42,6 +43,8 @@ public class Order {
                 return true;
             }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "De opdracht is niet uitgevoerd",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();
         }

@@ -1,19 +1,12 @@
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 public class GetOrderPanel extends JFrame implements ActionListener {
 
@@ -80,6 +73,8 @@ public class GetOrderPanel extends JFrame implements ActionListener {
                 recentOrders.add(result.getString("order_number"));
             }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "De opdracht is niet uitgevoerd.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();
         }
@@ -99,6 +94,8 @@ public class GetOrderPanel extends JFrame implements ActionListener {
             try {
                 orderNumber = Integer.parseInt(jtOrderNumber.getText());
             } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Geen geldig getal ingevoerd",
+                        "error", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Geen geldig getal ingevoerd");
                 return;
             }
@@ -108,6 +105,8 @@ public class GetOrderPanel extends JFrame implements ActionListener {
                 OrderInfoPanel.setSelectedOrder(sharedOrderNumber);
                 PackingListPanel.ProductList(sharedOrderNumber);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Geen geldig ordernummer ingevoerd",
+                        "error", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Geen geldig ordernummer ingevoerd");
                 return;
             }

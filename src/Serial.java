@@ -1,4 +1,6 @@
 import com.fazecast.jSerialComm.SerialPort;
+
+import javax.swing.*;
 import java.lang.Thread;
 
 public abstract class Serial {
@@ -83,6 +85,8 @@ public abstract class Serial {
             System.out.print(" Bytes Transmitted -> " + bytesTxed);
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Serial connection error.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
