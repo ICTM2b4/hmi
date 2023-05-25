@@ -48,11 +48,6 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
         jlCustomerAddress.setText(Order.selectOrder.getCustomer().getAddress());
         jlCustomerEmail.setText(Order.selectOrder.getCustomer().getEmail());
         jlCustomerPhoneNumber.setText(Order.selectOrder.getCustomer().getPhoneNumber());
-        ArrayList<Product> products = Order.selectOrder.getProducts();
-        orderInfoListModel.clear();
-        for (Product product : products) {
-            orderInfoListModel.addElement(product.getAmount() + ": " + product.getName());
-        }
     }
 
     public JPanel getOrderInfo() {
@@ -91,9 +86,6 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
         CustomerInfo2.add(jlCustomerPhoneNumber);
         OrderInfoMiddle.add(CustomerInfo2);
 
-        OrderInfoProducts.add(jlProducts);
-        OrderInfoMiddle.add(OrderInfoProducts);
-        OrderInfoMiddle.add(jsOrderInfo);
         OrderInfo.add(OrderInfoMiddle, BorderLayout.CENTER);
 
         jbChangeProduct.addActionListener(this);

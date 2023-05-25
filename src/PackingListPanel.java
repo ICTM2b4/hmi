@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PackingListPanel extends JFrame implements ActionListener {
     JPanel PackingList = new JPanel();
@@ -16,36 +17,34 @@ public class PackingListPanel extends JFrame implements ActionListener {
     JLabel jlEmpty8 = new JLabel();
 
     String[] packingListColumnNames = { "Producten", "Aantal" };
-    Object[][] packingList = {
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" },
-            { "Product", "Aantal" }
-    };
-    JTable jtPackingList = new JTable(packingList, packingListColumnNames);
-    JScrollPane jsPackingList = new JScrollPane(jtPackingList);
+
+    private static DefaultListModel<String> orderInfoListModel = new DefaultListModel<>();
+    private static JList<String> jlOrderInfoList = new JList<>(orderInfoListModel);
+    private static JScrollPane jsOrderInfo = new JScrollPane(jlOrderInfoList);
+
+
+    public static void ProductList(Order order) {
+        Order.selectOrder = order;
+        ArrayList<Product> products = Order.selectOrder.getProducts();
+        orderInfoListModel.clear();
+        for (Product product : products) {
+            orderInfoListModel.addElement(product.getAmount() + "x : " + product.getName());
+        }
+    }
 
     public JPanel getPackingList() {
         Style style = new Style();
 
         PackingList.setLayout(new BorderLayout());
-        PackingList.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Pakbon"));
+        PackingList.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Producten"));
 
         PackingListBottom.setLayout(new GridLayout(1, 4));
 
         jlPackingInfo.setVerticalAlignment(JLabel.TOP);
 
-        jtPackingList.setFont(style.getFont());
+        jsOrderInfo.setFont(style.getFont());
 
-        PackingList.add(jsPackingList, BorderLayout.CENTER);
+        PackingList.add(jsOrderInfo, BorderLayout.CENTER);
 
         PackingListBottom.add(jlEmpty6);
         PackingListBottom.add(jlEmpty7);
