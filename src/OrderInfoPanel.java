@@ -95,6 +95,13 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        WijzigDialog dialog = new WijzigDialog(this);
+        try {
+            WijzigDialog dialog = new WijzigDialog(this);
+        } catch (java.lang.NullPointerException a){
+            jlCustomerName.setText("Geef ordernummer op");
+            jlCustomerEmail.setText("Geef ordernummer op");
+            jlCustomerAddress.setText("Geef ordernummer op");
+            jlCustomerPhoneNumber.setText("Geef ordernummer op");
+        }
     }
 }

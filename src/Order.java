@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Order {
+    public static Order customerId;
     private int orderNumber;
     // arrayList of products
     private Customer customer;
@@ -77,7 +78,7 @@ public class Order {
 
     /**
      * this method will get all the products related to the order.
-     * 
+     *
      * @return
      */
     private void getProductsFromDatabase() {
@@ -105,7 +106,7 @@ public class Order {
 
     /**
      * this method will get a single product from the database.
-     * 
+     *
      * @param id     the id of the product
      * @param amount the ordered amount of the product
      * @return Product
@@ -134,7 +135,7 @@ public class Order {
     /**
      * this method will get a single product from the database.
      * it also defaults the amount to 1.
-     * 
+     *
      * @param id
      * @return Product
      */
