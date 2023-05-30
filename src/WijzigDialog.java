@@ -211,20 +211,21 @@ public class WijzigDialog extends JDialog implements ActionListener {
             //part[0] = straatnaam
             //part[1] = nummer
             String[] part = adres.split("(?<=\\D)(?=\\d)");
+            part[1].strip();
+            part[0].strip();
             try {
                 database_querrys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
 
-            } catch (SQLTransientConnectionException c){
+            } catch (SQLTransientConnectionException c) {
                 System.out.println(c); //catch not a valid postalcode
                 Component frame = null;
                 JOptionPane.showMessageDialog(frame, "Not a valid postalcode\n" +
                         "correct layout: 0000AA");
                 confirmed = false;
-            }
-            catch (SQLException b){
-                    System.out.println(b + "no");
+            } catch (SQLException b) {
+                System.out.println(b + "no");
                 confirmed = false;
-                }
+            }
 
 
             if (exist) {
@@ -288,7 +289,6 @@ public class WijzigDialog extends JDialog implements ActionListener {
                 dispose();
             }
         }
-
     }
 
     public boolean check(String line) {

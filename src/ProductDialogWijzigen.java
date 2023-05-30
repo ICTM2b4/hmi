@@ -84,34 +84,38 @@ public class ProductDialogWijzigen extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectButton) {
-            System.out.println(productList.getSelectedValue());
-            boolean done = true;
-            while (done) {
-                for (int i = 0; i < model.getSize(); i++) {
-                    String product = String.valueOf(model.elementAt(i));
-                    if (product.contains(productList.getSelectedValue().toString())) {
-                        int new_amount = Character.getNumericValue(product.charAt(0));
-                        if (new_amount == 1) {
-                            int testtien = Character.getNumericValue(product.charAt(1));
-                            if (testtien == 0) {
-                                errorLabel.setText("max 10 dezelfde producten");
-                                done = false;
+            try {
+                System.out.println(productList.getSelectedValue());
+                boolean done = true;
+                while (done) {
+                    for (int i = 0; i < model.getSize(); i++) {
+                        String product = String.valueOf(model.elementAt(i));
+                        if (product.contains(productList.getSelectedValue().toString())) {
+                            int new_amount = Character.getNumericValue(product.charAt(0));
+                            if (new_amount == 1) {
+                                int testtien = Character.getNumericValue(product.charAt(1));
+                                if (testtien == 0) {
+                                    errorLabel.setText("max 10 dezelfde producten");
+                                    done = false;
+                                } else {
+                                    new_amount++;
+                                    model.setElementAt(new_amount + ": " + productList.getSelectedValue().toString(), i);
+                                    done = false;
+                                }
                             } else {
                                 new_amount++;
                                 model.setElementAt(new_amount + ": " + productList.getSelectedValue().toString(), i);
                                 done = false;
                             }
-                        } else {
-                            new_amount++;
-                            model.setElementAt(new_amount + ": " + productList.getSelectedValue().toString(), i);
-                            done = false;
                         }
                     }
+                    if (done) {
+                        model.addElement("1: " + productList.getSelectedValue().toString());
+                        done = false;
+                    }
                 }
-                if (done) {
-                    model.addElement("1: " + productList.getSelectedValue().toString());
-                    done = false;
-                }
+            } catch (java.lang.NullPointerException a) {
+                errorLabel.setText("selecteer product links");
             }
         }
         if (e.getSource() == finishButton) {
@@ -125,32 +129,32 @@ public class ProductDialogWijzigen extends JDialog implements ActionListener {
                 while (done) {
                     String product = String.valueOf(model.elementAt(copyProductList.getSelectedIndex()));
                     String productname = product.split(": ")[1];
-                            int new_amount = Character.getNumericValue(product.charAt(0));
-                            if (new_amount == 1) {
-                                int testtien = Character.getNumericValue(product.charAt(1));
-                                if (testtien == 0) {
-                                    new_amount = 9;
-                                    model.setElementAt(new_amount + ": " + productname, copyProductList.getSelectedIndex());
-                                    done = false;
-                                } else {
-                                    model.remove(copyProductList.getSelectedIndex());
-                                }
-                            } else {
-                                new_amount--;
-                                model.setElementAt(new_amount + ": " + productname, copyProductList.getSelectedIndex());
-                                done = false;
-                            }
+                    int new_amount = Character.getNumericValue(product.charAt(0));
+                    if (new_amount == 1) {
+                        int testtien = Character.getNumericValue(product.charAt(1));
+                        if (testtien == 0) {
+                            new_amount = 9;
+                            model.setElementAt(new_amount + ": " + productname, copyProductList.getSelectedIndex());
+                            done = false;
+                        } else {
+                            model.remove(copyProductList.getSelectedIndex());
                         }
+                    } else {
+                        new_amount--;
+                        model.setElementAt(new_amount + ": " + productname, copyProductList.getSelectedIndex());
+                        done = false;
+                    }
+                }
 
 
             } catch (java.lang.ArrayIndexOutOfBoundsException a) {
-                errorLabel.setText("selecteer product");
+                errorLabel.setText("selecteer product rechts");
             }
         }
 
     }
 
-    public DefaultListModel getmodel(){
+    public DefaultListModel getmodel() {
         return model;
     }
 
