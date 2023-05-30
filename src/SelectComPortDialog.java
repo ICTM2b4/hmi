@@ -16,7 +16,7 @@ public class SelectComPortDialog extends JDialog implements ActionListener {
         super(frame, true);
         setSize(350, 200);
         setTitle("Selecteer de com poort");
-        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+      //  setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setLayout(new GridLayout(3, 1));
         jbConnect.addActionListener(this);
         jbClose.addActionListener(this);
