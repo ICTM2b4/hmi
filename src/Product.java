@@ -28,9 +28,12 @@ public class Product {
     public int getAmount() {
         return amount;
     }
-    public int getId() {return id;}
 
-    public static ArrayList<String> getProductPositons(int id){
+    public int getId() {
+        return id;
+    }
+
+    public static ArrayList<String> getProductPositons(int id, int amount) {
         ArrayList<String> positions = new ArrayList<>();
         try {
             // Create a statement
@@ -38,7 +41,7 @@ public class Product {
 
             // Execute a statement
             ResultSet result = statement
-                    .executeQuery("SELECT * FROM product_stocks where product_id = " + id + ";");
+                    .executeQuery("SELECT * FROM product_stocks where product_id = " + id + " limit " + amount + ";");
 
             if (!result.isBeforeFirst()) {
                 System.out.println("No stock fount for product " + id);
@@ -46,9 +49,9 @@ public class Product {
             }
             // Loop over the result set
             while (result.next()) {
-      //          products.add(getProductFromDatabase(result.getInt("product_id"), result.getInt("amount")));
-                positions.add(result.getInt("collum") + "," + result.getInt("row") );
-                System.out.println(result.getInt("row") + " " + result.getInt("collum") );
+                //          products.add(getProductFromDatabase(result.getInt("product_id"), result.getInt("amount")));
+                positions.add(result.getInt("collum") + "," + result.getInt("row"));
+                System.out.println(result.getInt("row") + " " + result.getInt("collum"));
 
             }
         } catch (SQLException e) {
