@@ -67,13 +67,15 @@ public class Screen extends JFrame implements ActionListener {
 
         setVisible(true);
         //commented out the next line to disable the com dialog
-      //  new SelectComPortDialog(this);
+        //  new SelectComPortDialog(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Bestelling toevoegen")) {
-            new ToevoegDialog(this);
+            new CustomerSelectDialog(this);
+
+
         }
 
     }
