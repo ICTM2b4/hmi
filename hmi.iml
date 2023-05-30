@@ -11,5 +11,15 @@
     <orderEntry type="library" name="itextpdf-5.5.13.2" level="application" />
     <orderEntry type="library" name="jSerialComm-2.9.0" level="application" />
     <orderEntry type="library" name="mariadb-java-client-2.7.9" level="application" />
+    <orderEntry type="module-library">
+        <library>
+        <CLASSES>
+         <root url="file://$MODULE_DIR$/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+        </library>
+        </orderEntry>
   </component>
 </module>
