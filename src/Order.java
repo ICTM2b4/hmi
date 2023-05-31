@@ -163,6 +163,7 @@ public class Order {
             System.out.println(positionToArduino);
             System.out.println("collectProducts(" + positionToArduino + ")");
             Serial.writeData("collectProducts(" + positionToArduino + ")");
+            Serial.connection.flushIOBuffers();
         }
 
     }
