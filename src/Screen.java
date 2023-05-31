@@ -70,10 +70,20 @@ public class Screen extends JFrame implements ActionListener {
         setVisible(true);
         // commented out the next line to disable the com dialog
         new SelectComPortDialog(this);
+        while(true){
+            stock.reload();
+            stock.repaint();
+            stock.revalidate();
+;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-//    public JPanel getpannel(){
-//        return visualStock;
-//    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -85,6 +95,7 @@ public class Screen extends JFrame implements ActionListener {
             new StockEdit(this);
 
         }
+
     }
 
 }
