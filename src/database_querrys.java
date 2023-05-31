@@ -39,15 +39,15 @@ public abstract class database_querrys {
         return null;
     }
 
-    public void updatestorage() {
-        int x_locatie = 1;
-        int y_locatie = 1;
-        int productid = 0;
+    public static void updatestorage(int productid, int x, int y) {
+
         try {
             Statement statement = Database.connection.createStatement();
-            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x_locatie + "  && collum = " + y_locatie + ";");
-
+            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
+            System.out.println("eddited stock");
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "geen geldige waardes ingevult",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();
         }

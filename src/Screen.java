@@ -28,6 +28,7 @@ public class Screen extends JFrame implements ActionListener {
 
         // Create buttons
         JButton jbAddOrder = new JButton("Bestelling toevoegen");
+        JButton jbAddStock = new JButton("Stock wijzigen");
 
         // Create labels
         JLabel jlEmpty = new JLabel();
@@ -36,12 +37,13 @@ public class Screen extends JFrame implements ActionListener {
 
         // Specifieke volgorde voor het toevoegen
         AddOrder.add(jbAddOrder);
-        AddOrder.add(jlEmpty);
+        AddOrder.add(jbAddStock);
         AddOrder.add(jlEmpty2);
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
 
         jbAddOrder.addActionListener(this);
+        jbAddStock.addActionListener(this);
 
         VisualStockPanel visualStock = new VisualStockPanel();
         VisualAndRightSide.add(visualStock.getVisualStock());
@@ -69,6 +71,9 @@ public class Screen extends JFrame implements ActionListener {
         // commented out the next line to disable the com dialog
         new SelectComPortDialog(this);
     }
+//    public JPanel getpannel(){
+//        return visualStock;
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -76,7 +81,10 @@ public class Screen extends JFrame implements ActionListener {
             new CustomerSelectDialog(this);
 
         }
+        if (e.getActionCommand().equals("Stock wijzigen")) {
+            new StockEdit(this);
 
+        }
     }
 
 }
