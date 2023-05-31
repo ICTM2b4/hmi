@@ -5,7 +5,7 @@ import java.lang.Thread;
 
 public abstract class Serial {
     static private SerialPort[] availablePorts = SerialPort.getCommPorts();
-    static public SerialPort connection;
+    static private SerialPort connection;
     // connection settings
     static int BaudRate = 9600;
     static int DataBits = 8;
@@ -89,6 +89,7 @@ public abstract class Serial {
                     "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+        connection.flushIOBuffers();
     }
 
     /**

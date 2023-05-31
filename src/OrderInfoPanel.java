@@ -35,6 +35,7 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
     private static JList<String> jlOrderInfoList = new JList<>(orderInfoListModel);
     private static JScrollPane jsOrderInfo = new JScrollPane(jlOrderInfoList);
 
+
     public static void setSelectedOrder(Order order) {
         Order.selectOrder = order;
         if (Order.selectOrder == null) {
@@ -89,12 +90,14 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
         OrderInfo.add(OrderInfoMiddle, BorderLayout.CENTER);
 
         jbChangeProduct.addActionListener(this);
+        jbGetOrder.addActionListener(this);
 
         return OrderInfo;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Wijzigen")) {
         try {
             WijzigDialog dialog = new WijzigDialog(this);
         } catch (java.lang.NullPointerException a){
@@ -104,4 +107,10 @@ public class OrderInfoPanel extends JFrame implements ActionListener {
             jlCustomerPhoneNumber.setText("Geef ordernummer op");
         }
     }
-}
+     if (e.getActionCommand().equals("Verwerken")) {
+         Order.processOrder();
+        //ArrayList<Product> products = Order.selectOrder.getProducts();
+//Serial.writeData("collectProducts(1,1)");
+
+    }
+}}

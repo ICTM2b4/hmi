@@ -1,3 +1,8 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class Product {
     private int id;
     private String name;
@@ -23,6 +28,37 @@ public class Product {
     public int getAmount() {
         return amount;
     }
-    public int getId() {return id;}
+
+    public int getId() {
+        return id;
+    }
+
+    public static ArrayList<String> getProductPositons(int id, int amount) {
+        ArrayList<String> positions = new ArrayList<>();
+        try {
+            // Create a statement
+            Statement statement = Database.connection.createStatement();
+
+            // Execute a statement
+            ResultSet result = statement
+                    .executeQuery("SELECT * FROM product_stocks where product_id = " + id + " limit " + amount + ";");
+
+            if (!result.isBeforeFirst()) {
+                System.out.println("No stock fount for product " + id);
+                return positions;
+            }
+            // Loop over the result set
+            while (result.next()) {
+                //          products.add(getProductFromDatabase(result.getInt("product_id"), result.getInt("amount")));
+                positions.add(result.getInt("collum") + "," + result.getInt("row"));
+                System.out.println(result.getInt("row") + " " + result.getInt("collum"));
+
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to execute the query.");
+            e.printStackTrace();
+        }
+        return positions;
+    }
 
 }
