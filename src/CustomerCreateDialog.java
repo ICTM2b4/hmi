@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.sql.SQLTransientConnectionException;
 
 public class CustomerCreateDialog extends JDialog implements ActionListener {
     private String voornaam;
@@ -193,6 +191,8 @@ public class CustomerCreateDialog extends JDialog implements ActionListener {
             dispose();
         } else {
 //            error voer geldig adres in layout "naam nummer"
+            JOptionPane.showMessageDialog(null, "Voer een geldig adres in.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("error" + adres);
         }
     }
