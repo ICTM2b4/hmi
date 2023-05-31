@@ -150,20 +150,20 @@ public class Order {
 
         } else {
 
-
+            String positionToArduino = "" ;
         for (Product product : Order.selectOrder.getProducts()) {
             System.out.println(product.getId());
            ArrayList<String> positions = Product.getProductPositons(product.getId(), product.getAmount());
-           String positionToArduino = "" ;
+
             for (String position : positions) {
                 positionToArduino += position + ".";
             }
-
+        }
             positionToArduino = positionToArduino.substring(0, positionToArduino.length() - 1);
             System.out.println(positionToArduino);
             System.out.println("collectProducts(" + positionToArduino + ")");
             Serial.writeData("collectProducts(" + positionToArduino + ")");
-        }}
+        }
 
     }
 }
