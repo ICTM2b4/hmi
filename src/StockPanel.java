@@ -1,42 +1,85 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class StockPanel extends JFrame {
-    String[] stocklistColumnNames = {"Producten", "Aantal"};
-    Object[][] stocklist = {
-            {getStockName(1), getStockTotal(1)},
-            {getStockName(2), getStockTotal(2)},
-            {getStockName(3), getStockTotal(3)},
-            {getStockName(4), getStockTotal(4)},
+//public class StockPanel extends JFrame {
+//    String[] stocklistColumnNames = {"Producten", "Aantal"};
+//    Object[][] stocklist = {
+//            {getStockName(1), getStockTotal(1)},
+//            {getStockName(2), getStockTotal(2)},
+//            {getStockName(3), getStockTotal(3)},
+//            {getStockName(4), getStockTotal(4)},
+//
+//    };
+    public class StockPanel extends JFrame implements ActionListener {
+    JButton jbAddStock = new JButton("Stock wijzigen");
 
-    };
-    public void reload(){
-        stocklist = new Object[][]{
+        String[] stocklistColumnNames = {"Producten", "Aantal"};
+        Object[][] stocklistData = {
                 {getStockName(1), getStockTotal(1)},
                 {getStockName(2), getStockTotal(2)},
                 {getStockName(3), getStockTotal(3)},
-                {getStockName(4), getStockTotal(4)},
+                {getStockName(4), getStockTotal(4)}
         };
-    }
+
+        DefaultTableModel stocklistModel;
+
+        public StockPanel() {
+            // Create the DefaultTableModel with the data and column names
+
+
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            pack();
+            setVisible(true);
+        }
+
+        // Example method to get stock name based on index
+
+
+
+
+
+//    public void reload(){
+//        stocklist = new Object[][]{
+//                {getStockName(1), getStockTotal(1)},
+//                {getStockName(2), getStockTotal(2)},
+//                {getStockName(3), getStockTotal(3)},
+//                {getStockName(4), getStockTotal(4)},
+//        };
+//    }
 
     public JPanel getStock()  {
         Style style = new Style();
 
         JPanel Stock = new JPanel();
-        Stock.setLayout(new GridLayout(1,1));
+        Stock.setLayout(new GridLayout(2,1));
         Stock.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Voorraad"));
 
-        JLabel jlStock = new JLabel();
-        jlStock.setVerticalAlignment(JLabel.TOP);
+//        JScrollPane jsStock = new JScrollPane(jtStockList);
 
-        JTable jtStockList = new JTable(stocklist, stocklistColumnNames);
-        jtStockList.setFont(style.getFont());
+        stocklistModel = new DefaultTableModel(stocklistData, stocklistColumnNames);
 
-        JScrollPane jsStock = new JScrollPane(jtStockList);
+        // Create the JTable with the model
+        JTable stockTable = new JTable(stocklistModel);
+
+        // Add the table to a scroll pane and set it as the content pane of the frame
+        JScrollPane jsStock = new JScrollPane(stockTable);
+//        setContentPane(scrollPane);
+
+
+        jbAddStock.addActionListener(this);
+        jbAddStock.setSize(20, 1);
+
+
 
         Stock.add(jsStock);
+
+        Stock.add(jbAddStock);
+
 
         return Stock;
     }
@@ -69,5 +112,21 @@ public class StockPanel extends JFrame {
         }
         return "Product";
     }
+    public void updateStock() {
+        stocklistData = new Object[][]{
+                {getStockName(1), getStockTotal(1)},
+                {getStockName(2), getStockTotal(2)},
+                {getStockName(3), getStockTotal(3)},
+                {getStockName(4), getStockTotal(4)},
+        };
+        stocklistModel.setDataVector(stocklistData, stocklistColumnNames);
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Stock wijzigen")) {
+            new StockEdit(this);
+            updateStock();
+        }
+    }
 }
