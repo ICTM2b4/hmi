@@ -1,12 +1,15 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
-public class StockEdit extends JDialog implements ActionListener {
-    private JTextField jtProductid = new JTextField();
+public class StockEditDialog extends JDialog implements ActionListener {
+    // private JTextField jtProductid = new JTextField();
+    String[] products = {"Geen product geselecteerd","rood", "geel", "groen", "blauw"};
+    JComboBox<String> jcProducts = new JComboBox<>(products);
     private JTextField jtXRow = new JTextField();
     private JTextField jtYRow = new JTextField();
-public StockEdit(JFrame frame){
+public StockEditDialog(JFrame frame){
     super(frame, true);
     JPanel panel = new JPanel();
     JLabel jlProductid = new JLabel();
@@ -29,7 +32,7 @@ public StockEdit(JFrame frame){
     jbSaveToDatabase.setBounds(10, 100, 150, 25);
     jbCancel.setBounds(10, 130, 150, 25);
 
-    jtProductid.setBounds(120, 10, 150, 25);
+    jcProducts.setBounds(120, 10, 150, 25);
     jtXRow.setBounds(120, 40, 150, 25);
     jtYRow.setBounds(120, 70, 150, 25);
 
@@ -38,7 +41,7 @@ public StockEdit(JFrame frame){
     panel.add(jlYRow);
     panel.add(jbSaveToDatabase);
     panel.add(jbCancel);
-    panel.add(jtProductid);
+    panel.add(jcProducts);
     panel.add(jtXRow);
     panel.add(jtYRow);
 
@@ -54,8 +57,8 @@ public StockEdit(JFrame frame){
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Save to database")) {
-
-            database_querrys.updatestorage(Integer.parseInt(jtProductid.getText()), Integer.parseInt(jtXRow.getText()), Integer.parseInt(jtYRow.getText()));
+            int productid = Arrays.asList(products).indexOf(jcProducts.getSelectedItem());;
+            database_querrys.updatestorage(productid, Integer.parseInt(jtXRow.getText()), Integer.parseInt(jtYRow.getText()));
 
 
 

@@ -102,7 +102,7 @@ public class StockPanel extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Stock wijzigen")) {
-            new StockEdit(this);
+            new StockEditDialog(this);
             updateStock();
         }
     }
