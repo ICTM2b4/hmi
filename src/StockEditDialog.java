@@ -18,11 +18,11 @@ public StockEditDialog(JFrame frame){
     JButton jbSaveToDatabase = new JButton();
     JButton jbCancel = new JButton();
 
-    jlProductid.setText("Product ID");
+    jlProductid.setText("Producten");
     jlXRow.setText("X Row");
     jlYRow.setText("Y Row");
-    jbSaveToDatabase.setText("Save to database");
-    jbCancel.setText("Cancel");
+    jbSaveToDatabase.setText("Opslaan");
+    jbCancel.setText("Annuleren");
 
     panel.setLayout(null);
 
@@ -56,15 +56,11 @@ public StockEditDialog(JFrame frame){
 }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Save to database")) {
+        if (e.getActionCommand().equals("Opslaan")) {
             int productid = Arrays.asList(products).indexOf(jcProducts.getSelectedItem());;
             database_querrys.updatestorage(productid, Integer.parseInt(jtXRow.getText()), Integer.parseInt(jtYRow.getText()));
-
-
-
         }
-        if (e.getActionCommand().equals("Cancel")){
-
+        if (e.getActionCommand().equals("Annuleren")){
         }
 
         dispose();
