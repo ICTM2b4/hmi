@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.channels.ScatteringByteChannel;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -32,7 +31,7 @@ public class CustomerSelectDialog extends JDialog implements ActionListener {
 
             // Loop over the result set
             while (result.next()) {
-                customers.add(database_querrys.getcustomername(result.getInt("id")));
+                customers.add(Database_querys.getcustomername(result.getInt("id")));
             }
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
@@ -63,17 +62,17 @@ public class CustomerSelectDialog extends JDialog implements ActionListener {
             if (customer != "new customer") {
                 String[] parts = customer.split(" ");
                 if (parts.length == 2) {
-                    customerid = database_querrys.getcustomerid(parts[0], parts[1]);
+                    customerid = Database_querys.getcustomerid(parts[0], parts[1]);
                     System.out.println(customerid);
                 } else {
-                    customerid = database_querrys.getcustomerid(parts[0], parts[1], parts[2]);
+                    customerid = Database_querys.getcustomerid(parts[0], parts[1], parts[2]);
                     System.out.println(customerid);
                 }
             } else {
                 dispose();
                 isdisposed = false;
                 new CustomerCreateDialog(this);
-                customerid = database_querrys.getmaxcustomerid();
+                customerid = Database_querys.getmaxcustomerid();
             }if (isdisposed) {
                 dispose();
             }

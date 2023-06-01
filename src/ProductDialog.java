@@ -75,7 +75,7 @@ public class ProductDialog extends JDialog implements ActionListener {
     }
 
     private ArrayList<Product> getProductsFromDatabase() {
-        return (database_querrys.getProductsFromDatabasesql());
+        return (Database_querys.getProductsFromDatabasesql());
     }
 
     @Override
