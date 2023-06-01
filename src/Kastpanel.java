@@ -45,12 +45,12 @@ public Kastpanel(){
                 g2.setColor(Database_querys.getcolorfromdatabase(positionx, positiony));
                 g2.fillRect(Integer.valueOf((int) ((47 * map(getWidth(), 492, 960, 1.30, 1)) + (i * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((60 * map(getHeight(), 435, 983, 1.30, 1)) + (h * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), (getWidth() / 44) * 5, (getHeight() / 40) *5);
 
-                if(h == 4 && i == 4) {
-                    g2.setColor(Color.orange);
-                    g2.setStroke(new BasicStroke(5));
-                    g2.drawLine(Integer.valueOf((int) ((70 * map(getWidth(), 492, 960, 1.30, 1)) + (5 * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((85 * map(getHeight(), 435, 983, 1.3448, 1)) + (4 * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), Integer.valueOf((int) ((70 * map(getWidth(), 492, 960, 1.30, 1)) + (2 * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((85 * map(getHeight(), 435, 983, 1.3448, 1)) + (4 * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))));
-                    g2.setStroke(new BasicStroke(2));
-                }
+                // if(h == 4 && i == 4) {
+                //     g2.setColor(Color.orange);
+                //     g2.setStroke(new BasicStroke(5));
+                //     g2.drawLine(Integer.valueOf((int) ((70 * map(getWidth(), 492, 960, 1.30, 1)) + (5 * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((85 * map(getHeight(), 435, 983, 1.3448, 1)) + (4 * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), Integer.valueOf((int) ((70 * map(getWidth(), 492, 960, 1.30, 1)) + (2 * (map(getWidth(), 492, 960, 2.15, 1) * 75)))), Integer.valueOf((int) ((85 * map(getHeight(), 435, 983, 1.3448, 1)) + (4 * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))));
+                //     g2.setStroke(new BasicStroke(2));
+                // }
                 if(h == 4 && i == 4){
                 g2.setColor(Color.darkGray);
                 g2.fillRect(robotx, Integer.valueOf((int) ((65 * map(getHeight(), 435, 983, 1.30, 1)) + (yPositionRobot * (map(getHeight(), 435, 983, 2.6, 1) * 67.5)))), (getWidth() / 59) * 5, (getHeight() / 50) *5);
