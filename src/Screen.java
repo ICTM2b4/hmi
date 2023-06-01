@@ -36,7 +36,6 @@ public class Screen extends JFrame implements ActionListener {
 
         // Specifieke volgorde voor het toevoegen
         AddOrder.add(jbAddOrder);
-        AddOrder.add(jlEmpty);
         AddOrder.add(jlEmpty2);
         AddOrder.add(jlEmpty3);
         FullScreen.add(AddOrder, BorderLayout.PAGE_START);
@@ -76,6 +75,7 @@ public class Screen extends JFrame implements ActionListener {
             new CustomerSelectDialog(this);
 
         }
+
 
     }
 

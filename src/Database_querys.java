@@ -39,15 +39,14 @@ public abstract class Database_querys {
         return null;
     }
 
-    public void updatestorage() {
-        int x_locatie = 1;
-        int y_locatie = 1;
-        int productid = 0;
+    public static void updatestorage(int productid, int x, int y) {
         try {
             Statement statement = Database.connection.createStatement();
-            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x_locatie + "  && collum = " + y_locatie + ";");
-
+            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
+            System.out.println("edited stock");
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "geen geldige waardes ingevult",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Failed to execute the query.");
             e.printStackTrace();
         }
@@ -122,7 +121,6 @@ public abstract class Database_querys {
                 new_firstName = old_firstName;
             }
 //      creating optional inputs
-            new_streetName.strip();
             statement1.setString(1, new_firstName);
             if (new_prefix == null){
                 statement1.setNull(2, VARCHAR);
@@ -159,7 +157,6 @@ public abstract class Database_querys {
     public static void insert_customer(String first_name, String last_name, String streetname, int house_number, String postal_code, String city, String email, String  prefix, String Phonenumber) {
 //  setting variables
         int phonenumber = 0;
-        Phonenumber.strip();
         try {
             if (prefix != "") {
             } else {

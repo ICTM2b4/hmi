@@ -210,8 +210,6 @@ public class WijzigDialog extends JDialog implements ActionListener {
             //part[0] = straatnaam
             //part[1] = nummer
             String[] part = adres.split("(?<=\\D)(?=\\d)");
-            part[1].strip();
-            part[0].strip();
             try {
                 Database_querys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
 
