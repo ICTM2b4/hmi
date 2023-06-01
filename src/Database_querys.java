@@ -7,7 +7,7 @@ import java.awt.*;
 import static java.sql.Types.VARCHAR;
 
 
-public abstract class database_querrys {
+public abstract class Database_querys {
 
 //  update storage
 

@@ -96,9 +96,10 @@ public abstract class Serial {
      * this method will read a string from the serial connection.
      * TODO: make this method return a string, this method has not been tested yet.
      */
-    static public void readData() {
+    static public String readData() {
+        String returnString = "";
         try {
-            while (true) {
+//            while (true) {
 
                 byte[] readBuffer = new byte[100];
 
@@ -112,11 +113,12 @@ public abstract class Serial {
 
                 System.out.println("Received -> " + S);
 
-            }
+                returnString = S;
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return returnString;
     }
 
 }

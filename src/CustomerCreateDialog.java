@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.sql.SQLTransientConnectionException;
 
 public class CustomerCreateDialog extends JDialog implements ActionListener {
     private String voornaam;
@@ -189,7 +187,7 @@ public class CustomerCreateDialog extends JDialog implements ActionListener {
             //part[1] = nummer
             String[] part = adres.split("(?<=\\D)(?=\\d)");
 
-            database_querrys.insert_customer(voornaam, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, email, prefix, phonenumber);
+            Database_querys.insert_customer(voornaam, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, email, prefix, phonenumber);
             dispose();
         } else {
 //            error voer geldig adres in layout "naam nummer"
