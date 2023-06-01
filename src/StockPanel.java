@@ -56,7 +56,7 @@ import java.sql.Statement;
         Style style = new Style();
 
         JPanel Stock = new JPanel();
-        Stock.setLayout(new GridLayout(2,1));
+        Stock.setLayout(new BorderLayout());
         Stock.setBorder(BorderFactory.createTitledBorder(style.getBorder(), "Voorraad"));
 
 //        JScrollPane jsStock = new JScrollPane(jtStockList);
@@ -72,13 +72,13 @@ import java.sql.Statement;
 
 
         jbAddStock.addActionListener(this);
-        jbAddStock.setSize(20, 1);
+    jbAddStock.setMinimumSize(new Dimension(5, 5));
 
 
+jsStock.setPreferredSize(new Dimension(400, 200));
+        Stock.add(jsStock, BorderLayout.CENTER);
 
-        Stock.add(jsStock);
-
-        Stock.add(jbAddStock);
+        Stock.add(jbAddStock, BorderLayout.PAGE_END);
 
 
         return Stock;
