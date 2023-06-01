@@ -40,11 +40,10 @@ public abstract class database_querrys {
     }
 
     public static void updatestorage(int productid, int x, int y) {
-
         try {
             Statement statement = Database.connection.createStatement();
             statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
-            System.out.println("eddited stock");
+            System.out.println("edited stock");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "geen geldige waardes ingevult",
                     "Error", JOptionPane.ERROR_MESSAGE);

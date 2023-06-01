@@ -51,8 +51,6 @@ public class StockPanel extends JFrame implements ActionListener {
 
         jbAddStock.addActionListener(this);
         jbAddStock.setMinimumSize(new Dimension(5, 5));
-
-
         jsStock.setPreferredSize(new Dimension(400, 200));
         Stock.add(jsStock, BorderLayout.CENTER);
 
@@ -61,7 +59,6 @@ public class StockPanel extends JFrame implements ActionListener {
 
         return Stock;
     }
-
     private int getStockTotal(int id) {
         try {
             Statement statement = Database.connection.createStatement();
