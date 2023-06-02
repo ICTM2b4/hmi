@@ -57,9 +57,14 @@ public StockEditDialog(JFrame frame){
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Opslaan")) {
+            try{
             int productid = Arrays.asList(products).indexOf(jcProducts.getSelectedItem());;
             Database_querys.updatestorage(productid, Integer.parseInt(jtYRow.getText()), Integer.parseInt(jtXRow.getText()));
         }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Geen geldige waarde ingevult.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }}
         if (e.getActionCommand().equals("Annuleren")){
         }
 
