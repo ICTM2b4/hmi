@@ -49,9 +49,8 @@ public class Product {
             }
             // Loop over the result set
             while (result.next()) {
-                //          products.add(getProductFromDatabase(result.getInt("product_id"), result.getInt("amount")));
-                positions.add(result.getInt("collum") + "," + result.getInt("row"));
                 System.out.println(result.getInt("row") + " " + result.getInt("collum"));
+                positions.add(result.getInt("collum") + "," + result.getInt("row"));
 
             }
         } catch (SQLException e) {
