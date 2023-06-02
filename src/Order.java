@@ -167,7 +167,7 @@ public class Order {
         System.out.println(positionToArduino);
         if(positionToArduino.length() + 1 == orderSize*4){
             System.out.println("collectProducts(" + positionToArduino + ")");
-           // Serial.writeData("collectProducts(" + positionToArduino + ")");
+            Serial.writeData("collectProducts(" + positionToArduino + ")");
 
             for (String position : allPositions) {
                 System.out.println(position);
