@@ -162,11 +162,12 @@ public class Order {
                 allPositions.add(position);
             }
         }
+        if(positionToArduino.length() > 0)
         positionToArduino = positionToArduino.substring(0, positionToArduino.length() - 1);
         System.out.println(positionToArduino);
         if(positionToArduino.length() + 1 == orderSize*4){
             System.out.println("collectProducts(" + positionToArduino + ")");
-            Serial.writeData("collectProducts(" + positionToArduino + ")");
+           // Serial.writeData("collectProducts(" + positionToArduino + ")");
 
             for (String position : allPositions) {
                 System.out.println(position);
@@ -181,7 +182,5 @@ public class Order {
             JOptionPane.showMessageDialog(null, "Er is niet genoeg voorraad",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }
 }
