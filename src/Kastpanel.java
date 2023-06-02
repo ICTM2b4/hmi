@@ -28,10 +28,10 @@ public Kastpanel(){
         int yPositionRobot = Integer.valueOf(parts[1]);
         int robotx = Integer.valueOf((int) ((55 * map(getWidth(), 492, 960, 1.30, 1)) + (xPositionRobot * (map(getWidth(), 492, 960, 2.15, 1) * 75))));
         if (test > 500) {
-            System.out.println(parts[0]);
-            System.out.println(parts[1]);
-            System.out.println(xPositionRobot);
-            System.out.println(yPositionRobot);
+            // System.out.println(parts[0]);
+            // System.out.println(parts[1]);
+            // System.out.println(xPositionRobot);
+            // System.out.println(yPositionRobot);
             test = 0;
         } else {
                 test++;}
