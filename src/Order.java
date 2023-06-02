@@ -163,14 +163,14 @@ public class Order {
         positionToArduino = positionToArduino.substring(0, positionToArduino.length() - 1);
         System.out.println(positionToArduino);
         System.out.println("collectProducts(" + positionToArduino + ")");
-        // Serial.writeData("collectProducts(" + positionToArduino + ")");
+        Serial.writeData("collectProducts(" + positionToArduino + ")");
 
         for (String position : allPositions) {
             System.out.println(position);
             int x = Integer.parseInt(position.substring(0, 1));
             int y = Integer.parseInt(position.substring(2, 3));
             System.out.println("x: " + x + " y: " + y);
-            Database_querys.updatestorage(0, x, y);
+            Database_querys.updatestorage(0, y, x);
         }
 
     }

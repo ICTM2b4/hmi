@@ -58,7 +58,7 @@ public StockEditDialog(JFrame frame){
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Opslaan")) {
             int productid = Arrays.asList(products).indexOf(jcProducts.getSelectedItem());;
-            Database_querys.updatestorage(productid, Integer.parseInt(jtXRow.getText()), Integer.parseInt(jtYRow.getText()));
+            Database_querys.updatestorage(productid, Integer.parseInt(jtYRow.getText()), Integer.parseInt(jtXRow.getText()));
         }
         if (e.getActionCommand().equals("Annuleren")){
         }
