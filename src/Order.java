@@ -152,8 +152,10 @@ public class Order {
 
         String positionToArduino = "";
         ArrayList<String> allPositions = new ArrayList<String>();
+        int orderSize = 0;
         for (Product product : Order.selectOrder.getProducts()) {
             System.out.println(product.getId());
+            orderSize += product.getAmount();
             ArrayList<String> positions = Product.getProductPositons(product.getId(), product.getAmount());
             for (String position : positions) {
                 positionToArduino += position + ".";
@@ -162,16 +164,24 @@ public class Order {
         }
         positionToArduino = positionToArduino.substring(0, positionToArduino.length() - 1);
         System.out.println(positionToArduino);
-        System.out.println("collectProducts(" + positionToArduino + ")");
-        Serial.writeData("collectProducts(" + positionToArduino + ")");
+        if(positionToArduino.length() + 1 == orderSize*4){
+            System.out.println("collectProducts(" + positionToArduino + ")");
+            Serial.writeData("collectProducts(" + positionToArduino + ")");
 
-        for (String position : allPositions) {
-            System.out.println(position);
-            int x = Integer.parseInt(position.substring(0, 1));
-            int y = Integer.parseInt(position.substring(2, 3));
-            System.out.println("x: " + x + " y: " + y);
-            Database_querys.updatestorage(0, y, x);
+            for (String position : allPositions) {
+                System.out.println(position);
+                int x = Integer.parseInt(position.substring(0, 1));
+                int y = Integer.parseInt(position.substring(2, 3));
+                System.out.println("x: " + x + " y: " + y);
+                Database_querys.updatestorage(0, y, x);
+            }
         }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Er is niet genoeg voorraad",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }
 }
