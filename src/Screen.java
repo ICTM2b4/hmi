@@ -2,8 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimerTask;
 
 public class Screen extends JFrame implements ActionListener {
+    StockPanel stock;
     public Screen() {
         setTitle("HMI");
         setSize(1000, 500);
@@ -45,7 +47,7 @@ public class Screen extends JFrame implements ActionListener {
         VisualStockPanel visualStock = new VisualStockPanel();
         VisualAndRightSide.add(visualStock.getVisualStock());
 
-        StockPanel stock = new StockPanel();
+        stock = new StockPanel();
         StockAndGetProduct.add(stock.getStock());
 
         GetOrderPanel getProduct = new GetOrderPanel();
@@ -68,6 +70,9 @@ public class Screen extends JFrame implements ActionListener {
         // commented out the next line to disable the com dialog
         new SelectComPortDialog(this);
     }
+    public void updatingstock(){
+        stock.updateStock();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -75,7 +80,6 @@ public class Screen extends JFrame implements ActionListener {
             new CustomerSelectDialog(this);
 
         }
-
 
     }
 
