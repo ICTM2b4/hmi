@@ -53,7 +53,7 @@ public class ToevoegDialog extends JDialog implements ActionListener {
     public ToevoegDialog(CustomerSelectDialog frame, int customerId) {
         super(frame, true);
         JPanel panel = new JPanel();
-        orderNummer = (database_querrys.getmaxorderid() + 1);
+        orderNummer = (Database_querys.getmaxorderid() + 1);
         Customer customer = new Customer(customerId);
         this.customerId = customerId;
         jlOrderNummerText.setText("Order nummer: ");
@@ -217,7 +217,7 @@ public class ToevoegDialog extends JDialog implements ActionListener {
             //part[1] = nummer
             String[] part = adres.split("(?<=\\D)(?=\\d)");
             try {
-                database_querrys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
+                Database_querys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
 
             } catch (SQLTransientConnectionException c) {
                 System.out.println(c); //catch not a valid postalcode
@@ -232,7 +232,7 @@ public class ToevoegDialog extends JDialog implements ActionListener {
 
 
             if (exist) {
-                database_querrys.create_new_order(customerId);
+                Database_querys.create_new_order(customerId);
                 DefaultListModel products = product.getmodel();
                 Object[] productlist = products.toArray();
                 ArrayList productlist_s = new ArrayList<String>();
@@ -254,7 +254,7 @@ public class ToevoegDialog extends JDialog implements ActionListener {
                             product_id = result2.getInt("id");
                         }
 
-                        database_querrys.insert_order(product_id, amount);
+                        Database_querys.insert_order(product_id, amount);
                     }
 
 

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.channels.ScatteringByteChannel;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -211,10 +210,8 @@ public class WijzigDialog extends JDialog implements ActionListener {
             //part[0] = straatnaam
             //part[1] = nummer
             String[] part = adres.split("(?<=\\D)(?=\\d)");
-            part[1].strip();
-            part[0].strip();
             try {
-                database_querrys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
+                Database_querys.update_customer(voornaam, prefix, achternaam, part[0], Integer.valueOf(part[1]), postcode, stad, phonenumber, email, klantid);
 
             } catch (SQLTransientConnectionException c) {
                 System.out.println(c); //catch not a valid postalcode
@@ -262,15 +259,15 @@ public class WijzigDialog extends JDialog implements ActionListener {
                             product_id = result2.getInt("id");
                         }
                         if (old_amounts.get(product_id) != 0) {
-                            database_querrys.update_order_oldproduct(product_id, new_amount, orderid);
+                            Database_querys.update_order_oldproduct(product_id, new_amount, orderid);
                         } else {
-                            database_querrys.update_order_newproduct(product_id, new_amount, orderid);
+                            Database_querys.update_order_newproduct(product_id, new_amount, orderid);
                         }
                         productsdone.set(product_id, 1);
                     }
                     for (int i = 0; i < productsdone.size(); i++) {
                         if (productsdone.get(i) == 0) {
-                            database_querrys.update_order_oldproductdelete(i, orderid);
+                            Database_querys.update_order_oldproductdelete(i, orderid);
                             System.out.println(i);
                             System.out.println(orderid);
                         }
