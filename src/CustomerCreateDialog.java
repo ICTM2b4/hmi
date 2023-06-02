@@ -191,6 +191,8 @@ public class CustomerCreateDialog extends JDialog implements ActionListener {
             dispose();
         } else {
 //            error voer geldig adres in layout "naam nummer"
+            JOptionPane.showMessageDialog(null, "Voer een geldig adres in.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("error" + adres);
         }
     }

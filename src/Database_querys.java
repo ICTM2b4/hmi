@@ -34,21 +34,30 @@ public abstract class Database_querys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return null;
     }
 
     public static void updatestorage(int productid, int x, int y) {
-        try {
-            Statement statement = Database.connection.createStatement();
-            statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
-            System.out.println("edited stock");
-        } catch (SQLException e) {
+        if (x <= 5 && x >= 1 && y <= 5 && y >= 1) {
+            try {
+                Statement statement = Database.connection.createStatement();
+                statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
+                System.out.println("edited stock");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "geen geldige waardes ingevult",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                System.err.println("Failed to execute the query.");
+                JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "geen geldige waardes ingevult",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            System.err.println("Failed to execute the query.");
-            e.printStackTrace();
         }
     }
 
@@ -122,9 +131,9 @@ public abstract class Database_querys {
             }
 //      creating optional inputs
             statement1.setString(1, new_firstName);
-            if (new_prefix == null){
+            if (new_prefix == null) {
                 statement1.setNull(2, VARCHAR);
-            }else {
+            } else {
                 statement1.setString(2, new_prefix);
             }
             statement1.setString(3, new_lastName);
@@ -132,9 +141,9 @@ public abstract class Database_querys {
             statement1.setInt(5, new_houseNumber);
             statement1.setString(6, new_postalCode);
             statement1.setString(7, new_city);
-            if (new_phoneNumber == null){
+            if (new_phoneNumber == null) {
                 statement1.setNull(8, VARCHAR);
-            }else {
+            } else {
                 statement1.setString(8, new_phoneNumber);
             }
             statement1.setString(9, new_email);
@@ -147,6 +156,8 @@ public abstract class Database_querys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             throw e;
         }
     }
@@ -154,7 +165,7 @@ public abstract class Database_querys {
 //  insert customer (start)
 //  creating variables
 
-    public static void insert_customer(String first_name, String last_name, String streetname, int house_number, String postal_code, String city, String email, String  prefix, String Phonenumber) {
+    public static void insert_customer(String first_name, String last_name, String streetname, int house_number, String postal_code, String city, String email, String prefix, String Phonenumber) {
 //  setting variables
         int phonenumber = 0;
         try {
@@ -170,9 +181,9 @@ public abstract class Database_querys {
 //      creating statement + execute
             PreparedStatement statement1 = Database.connection.prepareStatement("insert into customers (first_name, prefix, last_name, streetname, house_number, postal_code, city, phonenumber, email) value (?, ?, ?, ?, ?, ?, ?, ?, ?);");
             statement1.setString(1, first_name);
-            if (prefix == null){
+            if (prefix == null) {
                 statement1.setNull(2, VARCHAR);
-            }else {
+            } else {
                 statement1.setString(2, prefix);
             }
             statement1.setString(3, last_name);
@@ -186,6 +197,8 @@ public abstract class Database_querys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -200,6 +213,8 @@ public abstract class Database_querys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -211,6 +226,8 @@ public abstract class Database_querys {
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -221,20 +238,26 @@ public abstract class Database_querys {
             statement1.executeQuery("insert into order_lines(product_id, amount, order_number) values (" + product_id + "," + amount + "," + order_id + ");");
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
-//  insert new order (start)
+
+    //  insert new order (start)
 //  creating variables
-public static void create_new_order(int customer_id){
+    public static void create_new_order(int customer_id) {
         try {
             Statement statement = Database.connection.createStatement();
             statement.executeQuery("insert into orders (customer_id)" + "value (" + customer_id + ");");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-}
+    }
+
     public static void insert_order(int product_id, int amount) {
 
         int New_order_id = 0;
@@ -258,6 +281,8 @@ public static void create_new_order(int customer_id){
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -278,6 +303,8 @@ public static void create_new_order(int customer_id){
 
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         if (kleur == "onbekend") {
@@ -311,6 +338,8 @@ public static void create_new_order(int customer_id){
             return max_order_id;
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return max_order_id;
         }
@@ -332,6 +361,8 @@ public static void create_new_order(int customer_id){
             return naam;
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return naam;
         }
@@ -353,6 +384,8 @@ public static void create_new_order(int customer_id){
             return id;
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return id;
         }
@@ -374,13 +407,16 @@ public static void create_new_order(int customer_id){
             return id;
         } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return id;
         }
 
 
     }
-    public static int getmaxcustomerid(){
+
+    public static int getmaxcustomerid() {
         int id = 0;
         try {
             Statement statement = Database.connection.createStatement();
@@ -389,8 +425,10 @@ public static void create_new_order(int customer_id){
                 id = result.getInt("id");
             }
             return id;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println("Failed to execute the query.");
+            JOptionPane.showMessageDialog(null, "Failed to execute the query.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return id;
         }
