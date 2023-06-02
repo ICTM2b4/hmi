@@ -42,7 +42,7 @@ public abstract class Database_querys {
     }
 
     public static void updatestorage(int productid, int x, int y) {
-        if (x <= 5 && x >= 0 && y <= 5 && y >= 0) {
+        if (x <= 5 && x >= 1 && y <= 5 && y >= 1) {
             try {
                 Statement statement = Database.connection.createStatement();
                 statement.executeQuery("update product_stocks set product_id =" + productid + " where row = " + x + "  && collum = " + y + ";");
